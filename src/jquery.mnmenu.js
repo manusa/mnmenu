@@ -12,11 +12,10 @@
  */
 (function($) {
     $.fn.mnmenu = function(op) {
-        // Extend our default options with those provided.
-        // Note that the first argument to extend is an empty
-        // object – this is to keep from overriding our "defaults" object.
+// Extend our default options with those provided.
+// Note that the first argument to extend is an empty
+// object – this is to keep from overriding our "defaults" object.
         var settings = $.extend({}, $.fn.mnmenu.defaults, op);
-
         return this.each(function() {
             var $parentMenu = $(this);
             if ($parentMenu.prop("tagName").toUpperCase() !== "UL") {
@@ -47,7 +46,7 @@
                             if (windowWidth < (initialOffset + $this.outerWidth())) {
                                 $this.css("left", "auto");
                                 $this.css("right", (
-                                                //Container
+                                        //Container
                                                 ($parentContainer.outerWidth())
                                                 //Padding
                                                 + ($this.outerWidth() - $this.innerWidth())
@@ -58,7 +57,7 @@
                             }
                             $this.css("top", $parent.position().top + "px");
                         }
-                        //level-0 elements
+//level-0 elements
                         else {
                             $this.css("left", "0px");
                         }
@@ -78,7 +77,6 @@
                     });
                 });
             });
-
         });
     };
     /**
@@ -91,6 +89,10 @@
     function levelRecursion(settings, component, level) {
         if (component.prop("tagName").toUpperCase() === "LI") {
             if (component.parent().children().first().get(0) === component.get(0)) {
+                //Add Arrow to parent.
+                component.parent().closest("li").append(
+                        $('<span>', {class: settings.arrowClassName}).append(" &#187;"));
+                //Add FirstClassName to first <li>
                 component.addClass(settings.firstClassName);
             } else if (component.parent().children().last().get(0) === component.get(0)) {
                 component.addClass(settings.lastClassName);
@@ -113,6 +115,8 @@
         hoverClassName: "hover",
         //List elements levels
         levelClassPrefix: "level",
+        //
+        arrowClassName: "arrow",
         //List elements position in level
         firstClassName: "first",
         middleClassName: "middle",
