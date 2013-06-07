@@ -1,0 +1,245 @@
+/* 
+    Document   : sample
+    Created on : Jun 6, 2013, 4:56:22 PM
+    Author     : Marc Nuri <marc@marcnuri.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+ul.mnmenu {
+    position:relative;
+    margin:0;
+    padding:0;
+    display:block;
+    background-color:red;
+    
+background: #7d7e7d; /* Old browsers */
+background: -moz-linear-gradient(top,  #7d7e7d 0%, #0e0e0e 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #7d7e7d 0%,#0e0e0e 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+
+}
+
+ul.mnmenu  a {
+    font-family: sans-serif;
+    text-decoration: none;
+    color:#CCC;
+}
+ul.mnmenu li.level-0.hover a{
+    color:white;
+}
+/* LEVEL-0*/
+ul.mnmenu li.level-0 {
+    position:relative;
+    display:inline-block;
+    line-height:25px;
+    padding:0 5px 0 5px;
+}
+ul.mnmenu li.level-0.hover {
+    background-color:#222222;
+    color:white;
+}
+/* Rest */
+ul.mnmenu li.level-0 li{
+    padding:0 3px 0 3px;
+}
+ul.mnmenu li.level-0 li.hover{
+    background-color:#444;
+}
+ul.mnmenu li.level-0 ul {
+    position:absolute;
+    display:block;
+    margin:0px;
+    padding:3px;
+    background-color:#222222;
+    list-style:none;
+}
+/*
+.sfmmenu, 
+.sfmmenu * {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+ MAIN BAR 
+ul.sfmmenu {
+    line-height:25px;
+    clear:both;
+    background: #777777 url('http://dp.finepos.com/wicket/resource/org.apache.wicket.Application/GradientImage_e8d0c181-57f1-4d4f-95b0-47e39e0c6d04') repeat-x 50% 50%;
+}
+ TOP MENU ITEMS ENTRIES
+ul.sfmmenu span li {
+  position:relative;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: top;
+  min-height: 25px;
+  zoom: 1;
+  *display: inline;
+  *_height: 25px;
+}
+ TOP MENU ITEMS ENTRIES RESET 
+ul.sfmmenu span * li {
+  position:relative;
+  display:block;      
+}
+
+.sfmmenu li:hover {
+    visibility:inherit;  fixes IE7 'sticky bug' 
+}
+
+* SUBMENUs *
+ul.sfmmenu span li ul {
+  position:absolute;
+  top:-999em;
+  width:14em; 
+}
+ul.sfmmenu li:hover ul,
+ul.sfmmenu li.sfHover ul {
+  left:0;
+  top:25px; match top ul list item height (MAIN BAR)
+  z-index:99;
+}
+
+* SUBMENU ENTRIES *
+ul.sfmmenu span li ul li {
+  width:100%;
+  display:block;
+  float:left;
+}
+ul.sfmmenu span li ul li a{
+  width:100%;
+  float:left;
+}
+
+.sfmmenu li:hover ul,
+.sfmmenu li.sfHover ul {
+    left:0;
+    top:25px; match top ul list item height 
+    z-index:99;
+}
+
+
+.sfmmenu li:hover li ul,
+.sfmmenu li.sfHover li ul {
+    top:-999em;
+}
+.sfmmenu li li:hover ul,
+.sfmmenu li li.sfHover ul {
+    left:14em;  match ul width 
+    top:0;
+}
+
+* ??THIRD LEVE? *
+.sfmmenu li li:hover li ul,
+.sfmmenu li li.sfHover li ul {
+    top:-999em;
+}
+.sfmmenu li li li:hover ul,
+.sfmmenu li li li.sfHover ul {
+  left:14em; 
+  top:0;
+}
+
+* GENERAL LINK STYLE *
+.sfmmenu a {
+    padding: 0em 1em;
+    text-decoration:none;
+}
+.sfmmenu a,
+.sfmmenu a:visited  {
+     visited pseudo selector so IE6 applies text colour
+    color: black;
+}
+
+.sfmmenu li li a,
+.sfmmenu li li a:visited  {
+     visited pseudo selector so IE6 applies text colour
+    color: #EEEEEE;
+}
+
+.sfmmenu li {
+    border-left: 1px solid #222222;
+}
+.sfmmenu li li {
+    background: #333333;
+}
+.sfmmenu li li li {
+    background:#222222;
+}
+
+
+.sfmmenu li:hover, 
+.sfmmenu li.sfHover{
+    background: #333333 url('http://dp.finepos.com/wicket/resource/org.apache.wicket.Application/GradientImage_a7e6ed78-6362-4cb7-90f4-61f6f69f97c7') repeat-x 50% 50%;
+    outline:0;
+}
+.sfmmenu li:hover a,
+.sfmmenu li.sfHover a {
+    color:white;
+}
+.sfmmenu li li:hover, 
+.sfmmenu li li.sfHover{
+    background:#666666;
+    outline:0;
+}
+** arrows *
+.sfmmenu a.sf-with-ul {
+    padding-right: 	2.25em;
+    min-width:		1px;  trigger IE7 hasLayout so spans position accurately 
+}
+.sf-sub-indicator {
+  position:absolute;
+  display:block;
+  right:5px;
+  top: 7px; IE6 ONLY 
+  width:10px;
+  height:10px;
+  text-indent:-999em;
+  overflow:hidden;
+    background:url('http://dp.finepos.com/wicket/resource/com.marcnuri.delpueblo.resources.themes.basic.BasicTheme/superFishArrows-ffffff-ver-D0FCEF6B2D88DCB1A39F3128214CD62A.png') no-repeat -10px -100px;  8-bit indexed alpha png. IE6 gets solid image only 
+}
+a > .sf-sub-indicator {
+     give all except IE6 the correct values 
+    top:			7px;
+    background-position: 0 -100px;  use translucent arrow for modern browsers
+}
+ apply hovers to modern browsers 
+a:focus > .sf-sub-indicator,
+a:hover > .sf-sub-indicator,
+a:active > .sf-sub-indicator,
+li:hover > a > .sf-sub-indicator,
+li.sfHover > a > .sf-sub-indicator {
+    background-position: -10px -100px;  arrow hovers for modern browsers
+}
+
+ point right for anchors in subs 
+.sfmmenu ul .sf-sub-indicator { background-position:  -10px 0; }
+.sfmmenu ul a > .sf-sub-indicator { background-position:  0 0; }
+ apply hovers to modern browsers 
+.sfmmenu ul a:focus > .sf-sub-indicator,
+.sfmmenu ul a:hover > .sf-sub-indicator,
+.sfmmenu ul a:active > .sf-sub-indicator,
+.sfmmenu ul li:hover > a > .sf-sub-indicator,
+.sfmmenu ul li.sfHover > a > .sf-sub-indicator {
+    background-position: -10px 0;  arrow hovers for modern browsers
+}
+
+** shadows for all but IE6 **
+.sf-shadow ul {
+    background:	url('http://dp.finepos.com/wicket/resource/com.marcnuri.delpueblo.resources.themes.basic.BasicTheme/superFishShadow-ver-F1D103B9DF220B6BC49011A7141DD398.png') no-repeat bottom right;
+    padding: 0 8px FUCKS IE0 9px  0;
+    -moz-border-radius-bottomleft: 17px;
+    -moz-border-radius-topright: 17px;
+    -webkit-border-top-right-radius: 17px;
+    -webkit-border-bottom-left-radius: 17px;
+}
+.sf-shadow ul.sf-shadow-off {
+    background: transparent;
+}*/
+
