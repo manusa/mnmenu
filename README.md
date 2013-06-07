@@ -1,4 +1,6 @@
-mnmenu
-======
+[menmenu](http://www.marcnuri.com/)
+===================================
 
-JQuery plugin to create dropdown menus from ul lists
+Description
+-----------
+[JQuery](http://jquery.com/) plugin to create dropdown menus from ul lists
