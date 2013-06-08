@@ -17,7 +17,7 @@ This is a [JQuery](http://jquery.com/) plugin, so obviously it requires the jque
 ###Html
 
 Add JQuery and mnmenu scripts to the `<head>` section.
- ```javascript
+ ```html
 <script src="../lib/jqmin.1.10.1.js" type="text/javascript"></script>
 <script src="../src/jquery.mnmenu.js" type="text/javascript"></script>
 ```
@@ -25,7 +25,7 @@ Add JQuery and mnmenu scripts to the `<head>` section.
 The menu should be initialized in an ``<ul>`` element
 
 Initialize the menu for your list:
- ```javascript
+ ```html
 <script>$(document).ready(function() {
 $('#idmenu').mnmenu();
 })</script>
