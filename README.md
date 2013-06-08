@@ -17,17 +17,19 @@ This is a [JQuery](http://jquery.com/) plugin, so obviously it requires the jque
 ###Html
 
 Add JQuery and mnmenu scripts to the `<head>` section.
-
-``<script src="../lib/jqmin.1.10.1.js" type="text/javascript"></script>``
-``<script src="../src/jquery.mnmenu.js" type="text/javascript"></script>``
+ ```javascript
+<script src="../lib/jqmin.1.10.1.js" type="text/javascript"></script>
+<script src="../src/jquery.mnmenu.js" type="text/javascript"></script>
+```
 
 The menu should be initialized in an ``<ul>`` element
 
 Initialize the menu for your list:
-
-``<script>$(document).ready(function() {
-``$('#idmenu').mnmenu();
-``})</script>
+ ```javascript
+<script>$(document).ready(function() {
+$('#idmenu').mnmenu();
+})</script>
+```
 
 ###CSS
 
