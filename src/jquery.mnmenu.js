@@ -24,7 +24,7 @@
             $parentMenu.addClass(settings.menuClassName);
             //Recursion through elements to set default class names and parameters
             levelRecursion(settings, $parentMenu, 0);
-            //Hide every other submenu
+            //Hide every other submenu (It should be prehidden by css
             $parentMenu.find("ul").each(function() {
                 $(this).css("display", "none");
             });
@@ -67,6 +67,7 @@
                         //level-0 elements
                         else {
                             $this.css("left", "0px");
+                            $this.css("top", $this.closest("li").outerHeight()+"px");
                         }
                         $this.slideDown(settings.duration);
                     });
@@ -117,6 +118,10 @@
             levelRecursion(settings, $currentLevel, level);
         });
     }
+    
+    /**
+     * Default plugin options
+     */
     $.fn.mnmenu.defaults = {
         //Class for top-level menuName
         menuClassName: "mnmenu",

@@ -13,6 +13,7 @@ body{
     font-family:sans-serif;
     font-size:13px;
 }
+
 ul.mnmenu{
     margin:0;
     padding:0;
@@ -32,11 +33,15 @@ ul.mnmenu a {
 }
 ul.mnmenu li.level-0 {
     position:relative;
+    display: -moz-inline-stack;
     display: inline-block;
     *display: inline;
-    *_height: 25px;
-    vertical-align: top;
+    zoom: 1;
+    min-height: 25px;
     line-height:25px;
+    height: 25px;
+    _height: 25px;
+    vertical-align: top;
     padding:0 25px 0 10px;
     border-left: 1px solid #222222;
 }
@@ -57,8 +62,10 @@ ul.mnmenu li.level-0.hover{
 }
 
 ul.mnmenu li.level-0 ul{
-    display: none;
     position:absolute;
+    display: none;
+    margin:0;
+    padding:0;
     background-color:#333;
     width:14em;
     -webkit-box-shadow:  0px 2px 6px 1px #222;
