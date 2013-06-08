@@ -1,60 +1,92 @@
-/* 
-    Document   : style
-    Created on : Jun 6, 2013, 4:56:22 PM
-    Author     : Marc Nuri <marc@marcnuri.com>
-    Description:
-        example style
-*/
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
+table { border-collapse: collapse; border-spacing: 0; }
+a img { border: none; }
+caption, th, td { text-align: left; font-weight:400; }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; }
+input,textarea { margin: 0; }/* Removes Firefox imposed outline */
+a { outline: none; }
 
-ul.mnmenu {
-    position:relative;
+body{
+    font-family:sans-serif;
+    font-size:13px;
+}
+ul.mnmenu{
     margin:0;
     padding:0;
-    display:block;
-    background-color:red;
-
-    background: #7d7e7d; /* Old browsers */
-    background: -moz-linear-gradient(top,  #7d7e7d 0%, #0e0e0e 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #7d7e7d 0%,#0e0e0e 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
-
+    list-style:none;
 }
-ul.mnmenu,
-ul.mnmenu  a {
-    font-family: sans-serif;
-    text-decoration: none;
-    color:#CCC;
-}
-ul.mnmenu li.level-0.hover a{
-    color:white;
-}
-/* LEVEL-0*/
-ul.mnmenu li.level-0 {
-    position:relative;
-    display:inline-block;
+ul.mnmenu {
     line-height:25px;
-    padding:0 5px 0 5px;
+    clear:both;
+    background: #777777 url('menuLight.png') repeat-x 50% 50%;
 }
-ul.mnmenu li.level-0.hover {
-    background-color:#222222;
+ul.mnmenu li{
+    list-style:none;
+}
+ul.mnmenu a {
+    padding: 0;
+    text-decoration:none;
+}
+ul.mnmenu li.level-0 {
+  position:relative;
+  display: inline-block;
+  vertical-align: top;
+  line-height:25px;
+  padding:0 25px 0 10px;
+  border-left: 1px solid #222222;
+}
+ul.mnmenu li.level-0 a,
+ul.mnmenu li.level-0 a:visited  {
+    color: black;
+}
+
+ul.mnmenu li.level-0.hover a {
     color:white;
 }
-/* Rest */
+ul.mnmenu li.level-0.first{
+    border-left:none;
+}
+ul.mnmenu li.level-0.hover{
+    background: #333333 url('menuDark.png') repeat-x 50% 50%;
+    outline:0;
+}
+
+ul.mnmenu li.level-0 ul{
+    position:absolute;
+    background-color:#333;
+    width:14em;
+    -webkit-box-shadow:  0px 2px 6px 1px #222;
+    box-shadow:  0px 2px 6px 1px #222;
+}
 ul.mnmenu li.level-0 li{
-    padding:0 3px 0 3px;
+    position:relative;
+    margin:5px 0 5px 0;
+    padding:0 1em 0 1em;
+}
+ul.mnmenu li.level-0 li,
+ul.mnmenu li.level-0 li a,
+ul.mnmenu li.level-0 li a:visited  {
+    color: white;
+    word-break: break-all;
 }
 ul.mnmenu li.level-0 li.hover{
-    background-color:#444;
+    background: #666;
+    outline:0;
 }
-ul.mnmenu li.level-0 ul {
+
+/* ARROWS */
+ul.mnmenu li.level-0 span.arrow {
     position:absolute;
-    display:block;
-    margin:0px;
-    padding:3px;
-    background-color:#222222;
-    list-style:none;
+    top:-1px;
+    right:10px;
+}
+
+
+/** NON-MENU OTHER **/
+ul.mnmenu hr,
+ul.mnmenu li.level-0 li hr{
+    border:0;
+    color:#555;
+    background-color:#555;
+    height:1px;
 }

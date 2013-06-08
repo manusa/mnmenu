@@ -41,7 +41,7 @@
                         var $parentContainer = $parent.closest("ul");
                         //Non-level-0 elements
                         if (!$parent.hasClass(settings.levelClassPrefix + "-0")) {
-
+                            //Horizontal position
                             initialOffset = $parentContainer.offset().left + $parentContainer.outerWidth();
                             if (windowWidth < (initialOffset + $this.outerWidth())) {
                                 $this.css("left", "auto");
@@ -55,7 +55,12 @@
                                 $this.css("left", $parentContainer.outerWidth() + "px");
                                 $this.css("right", "auto");
                             }
-                            $this.css("top", $parent.position().top + "px");
+                            //Vertical position
+                            if ($parent.css("position") === "relative") {
+                                $this.css("top", "0px");
+                            } else {
+                                $this.css("top", $parent.position().top + "px");
+                            }
                         }
 //level-0 elements
                         else {
