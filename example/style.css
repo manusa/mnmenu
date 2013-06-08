@@ -52,6 +52,7 @@ ul.mnmenu li.level-0.hover{
 }
 
 ul.mnmenu li.level-0 ul{
+    display: none;
     position:absolute;
     background-color:#333;
     width:14em;
