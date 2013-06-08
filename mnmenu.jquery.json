@@ -1,0 +1,40 @@
+{
+    "name": "mnmenu",
+    "version": "0.0.5",
+    "title": "jQuery mnmenu, simple dropdown menu",
+    "description": "jQuery plugin to create dropdown menus from ul lists.",
+    "keywords": [
+        "menu",
+        "mnmenu",
+        "dropdown",
+        "animated",
+        "drop",
+        "menu",
+        "list",
+        "css"
+    ],
+    "author": {
+        "name": "Marc Nuri",
+        "url": "http://www.marcnuri.com"
+    },
+    "maintainers": [
+        {
+            "name": "Marc Nuri",
+            "email": "marc@marcnuri.com",
+            "url": "http://www.marcnuri.com"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/manusa/mnmenu/blob/master/src/license.txt"
+        }
+    ],
+    "bugs": "https://github.com/manusa/mnmenu",
+    "homepage": "https://github.com/manusa/mnmenu",
+    "docs": "https://github.com/manusa/mnmenu",
+    "download": "https://github.com/manusa/mnmenu/tree/master/src",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}
