@@ -14,7 +14,9 @@ This is a [JQuery](http://jquery.com/) plugin, so obviously it requires the jque
 
 ##Usage
 
-Add jquery and mnmenu scripts to the <head> section.
+Add jquery and mnmenu scripts to the `<head>` section.
+
+
 ``<script src="../lib/jqmin.1.10.1.js" type="text/javascript"></script>``
 ``<script src="../src/jquery.mnmenu.js" type="text/javascript"></script>``
 
