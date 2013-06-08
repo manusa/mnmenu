@@ -78,8 +78,22 @@ ul.mnmenu li.level-0 li.hover{
 /* ARROWS */
 ul.mnmenu li.level-0 span.arrow {
     position:absolute;
-    top:-1px;
-    right:10px;
+    overflow: hidden;
+    text-indent: 9999em;
+    top:6px;
+    right:7px;
+    width:10px;
+    background:transparent url('menuArrowsFFFFFF.png') no-repeat 0px -100px;
+}
+ul.mnmenu li.level-0.hover span.arrow {
+    background:transparent url('menuArrowsFFFFFF.png') no-repeat -10px -100px;
+}
+ul.mnmenu li.level-0 li.hover span.arrow {
+    background:transparent url('menuArrowsFFFFFF.png') no-repeat -10px 0px;
+}
+ul.mnmenu li.level-0.hover li span.arrow,
+ul.mnmenu li.level-0 * li span.arrow {
+    background:transparent url('menuArrowsFFFFFF.png') no-repeat 0px 0px;
 }
 
 
