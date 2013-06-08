@@ -28,12 +28,12 @@ ul.mnmenu a {
     text-decoration:none;
 }
 ul.mnmenu li.level-0 {
-  position:relative;
-  display: inline-block;
-  vertical-align: top;
-  line-height:25px;
-  padding:0 25px 0 10px;
-  border-left: 1px solid #222222;
+    position:relative;
+    display: inline-block;
+    vertical-align: top;
+    line-height:25px;
+    padding:0 25px 0 10px;
+    border-left: 1px solid #222222;
 }
 ul.mnmenu li.level-0 a,
 ul.mnmenu li.level-0 a:visited  {
@@ -90,4 +90,34 @@ ul.mnmenu li.level-0 li hr{
     color:#555;
     background-color:#555;
     height:1px;
+}
+
+body, input, select, textarea, button {
+    font: 13px Helvetica, arial, freesans, clean, sans-serif;
+    line-height: 1.4;
+}
+div.content{
+    margin:5px;
+}
+.content {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333333;
+}
+.content h1 {
+    font-size:2.5em;
+}
+.content h2 {
+    font-size: 2em;
+    border-bottom: 1px solid #eee;
+}
+.content a {
+    color: #4183c4;
+    text-decoration: none;
+}
+.content a:hover {
+    text-decoration:underline;
+}
+.content p{
+    margin: 15px 0;
 }
