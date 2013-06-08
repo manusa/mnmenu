@@ -26,7 +26,7 @@ The menu should be initialized in an ``<ul>`` element
 Initialize the menu for your list:
 
 ``<script>$(document).ready(function() {
-``    $('#idmenu').mnmenu();
+``$('#idmenu').mnmenu();
 ``})</script>
 
 ###CSS
