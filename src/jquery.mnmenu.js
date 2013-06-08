@@ -40,7 +40,8 @@
                         var $parent = $this.parent("li");
                         var $parentContainer = $parent.closest("ul");
                         //Non-level-0 elements
-                        if (!$parent.hasClass(settings.levelClassPrefix + "-0")) {
+                        if (!$parent.hasClass(
+                                [settings.levelClassPrefix, "-0"].join(""))) {
                             //Horizontal position
                             initialOffset = $parentContainer.offset().left + $parentContainer.outerWidth();
                             if (windowWidth < (initialOffset + $this.outerWidth())) {
@@ -96,7 +97,8 @@
             if (component.parent().children().first().get(0) === component.get(0)) {
                 //Add Arrow to parent.
                 component.parent().closest("li").append(
-                        $('<span>', {class: settings.arrowClassName}).append(" &#187;"));
+                        $(["<span ", "class='", settings.arrowClassName, "'></span>"].join("")
+                        ).append(" &#187;"));
                 //Add FirstClassName to first <li>
                 component.addClass(settings.firstClassName);
             } else if (component.parent().children().last().get(0) === component.get(0)) {
