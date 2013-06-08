@@ -34,6 +34,7 @@
                     var $enteredMenu = $(this);
                     var windowWidth = $(window).width();
                     clearTimeout($enteredMenu.data('timer'));
+                    //Remove hover class
                     $enteredMenu.addClass(settings.hoverClassName);
                     $enteredMenu.children("ul").each(function() {
                         var $this = $(this);
@@ -63,7 +64,7 @@
                                 $this.css("top", $parent.position().top + "px");
                             }
                         }
-//level-0 elements
+                        //level-0 elements
                         else {
                             $this.css("left", "0px");
                         }
@@ -73,6 +74,7 @@
                 $(this).mouseleave(function() {
                     var $leftMenu = $(this);
                     clearTimeout($leftMenu.data('timer'));
+                    //Add Hover class
                     $leftMenu.removeClass(settings.hoverClassName);
                     $leftMenu.children("ul").each(function() {
                         var $toHide = $(this);
