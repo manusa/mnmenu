@@ -23,7 +23,7 @@
             }
             $parentMenu.addClass(settings.menuClassName);
             //Recursion through elements to set default class names and parameters
-            levelRecursion(settings, $parentMenu, 0);
+            $.fn.mnmenu.levelRecursion(settings, $parentMenu, 0);
             //Hide every other submenu (It should be prehidden by css
             $parentMenu.find("ul").each(function() {
                 $(this).css("display", "none");
@@ -31,26 +31,27 @@
             //Add effects to every LI
             $parentMenu.find("li").each(function() {
                 $(this).mouseenter(function() {
-                    mouseEnter($(this), settings);
+                    $.fn.mnmenu.mouseEnter($(this), settings);
                 });
                 $(this).mouseleave(function() {
-                    mouseLeave($(this), settings);
+                    $.fn.mnmenu.mouseLeave($(this), settings);
                 });
             });
         });
-    };
 
+
+    };
     /**
      * Function called when mouse hovers a menu entry (&lt;li&gt;)
      * @param {jQuery} menu
      * @param {type} settings
      * @returns {undefined}
      */
-    function mouseEnter(menu, settings) {
+    $.fn.mnmenu.mouseEnter = function(menu, settings) {
         var windowWidth = $(window).width();
         clearTimeout(menu.data('timer'));
         //Add hover class
-        elementsToHover(menu, settings).each(function(){
+        $.fn.mnmenu.elementsToHover(menu, settings).each(function() {
             $(this).addClass(settings.hoverClassName);
         });
 //        menu.addClass(settings.hoverClassName);
@@ -89,7 +90,7 @@
             }
             $this.slideDown(settings.duration);
         });
-    }
+    };
 
     /**
      * Function called when mouse leaves a menu entry (&lt;li&gt;)
@@ -97,10 +98,10 @@
      * @param {type} settings
      * @returns {undefined}
      */
-    function mouseLeave(menu, settings) {
+    $.fn.mnmenu.mouseLeave = function(menu, settings) {
         clearTimeout(menu.data('timer'));
         //Remove hover class
-        elementsToHover(menu, settings).each(function(){
+        $.fn.mnmenu.elementsToHover(menu, settings).each(function() {
             $(this).removeClass(settings.hoverClassName);
         });
         //menu.removeClass(settings.hoverClassName);
@@ -111,26 +112,28 @@
                         $toHide.hide(settings.duration);
                     }, settings.delay));
         });
-    }
-    
+    };
+
+
+
     /**
      * 
      * @param {jQuery} menu
      * @param {type} settings
      * @returns {jQuery}
      */
-    function elementsToHover(menu, settings){
+    $.fn.mnmenu.elementsToHover = function(menu, settings) {
         return $([menu, menu.children(":not(ul)")]);
-    }
-    
+    };
+
     /**
      * Recursive function to traverse the component and add a level to its &lt;li&gt; children
      * @param {type} settings
-     * @param {type} component
-     * @param {type} level
+     * @param {jQuery} component
+     * @param {int} level
      * @returns {undefined}
      */
-    function levelRecursion(settings, component, level) {
+    $.fn.mnmenu.levelRecursion = function(settings, component, level) {
         if (component.prop("tagName").toUpperCase() === "LI") {
             if (component.parent().children().first().get(0) === component.get(0)) {
                 //Add Arrow to parent.
@@ -150,9 +153,9 @@
         component.children().each(function() {
             $currentLevel = $(this);
             $currentLevel.addClass(settings.levelClassPrefix + "-" + level);
-            levelRecursion(settings, $currentLevel, level);
+            $.fn.mnmenu.levelRecursion(settings, $currentLevel, level);
         });
-    }
+    };
 
     /**
      * Default plugin options
