@@ -33,7 +33,7 @@
     "bugs": "https://github.com/manusa/mnmenu/issues",
     "homepage": "https://github.com/manusa/mnmenu",
     "docs": "https://github.com/manusa/mnmenu",
-    "download": "https://github.com/manusa/mnmenu/tree/master/src",
+    "download": "https://github.com/manusa/mnmenu/archive/master.zip",
     "dependencies": {
         "jquery": ">=1.5"
     }
