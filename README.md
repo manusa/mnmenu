@@ -8,6 +8,9 @@
 This is a very simple and straightforward plugin. It's still a work in progress project
 with more features to come, so check for updates to see what's new in upcoming versions.
 
+The aim of the project is to create a very simple to style dropdown menu. You can create
+a totally styled menu in less than 100 line css sheet
+
 ##Requirements
 
 This is a [JQuery](http://jquery.com/) plugin, so obviously it requires the jquery library.
