@@ -14,7 +14,7 @@ a totally styled menu in less than 100 line css sheet
 ##Demo
 
 You can try a working demo of the project at:
-**[www.marcnuri.com](http://www.marcnuri.com)**
+**[www.marcnuri.com](http://www.marcnuri.com/content/mnmenu-dropdown-jquery-menu)**
 
 ##Requirements
 
