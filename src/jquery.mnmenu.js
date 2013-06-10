@@ -35,9 +35,8 @@
                 });
             });
         });
-
-
     };
+
     /**
      * Function called when mouse hovers a menu entry (&lt;li&gt;)
      * @param {jQuery} menu
@@ -77,7 +76,8 @@
                 if (!$parent.hasClass(
                         [settings.levelClassPrefix, "-0"].join(""))) {
                     //Horizontal position
-                    initialOffset = $parentContainer.offset().left + $parentContainer.outerWidth();
+                    var initialOffset = $parentContainer.offset().left +
+                            $parentContainer.outerWidth();
                     if (windowWidth < (initialOffset + $this.outerWidth())) {
                         $this.css("left", "auto");
                         $this.css("right", (
@@ -167,7 +167,7 @@
         }
         //The component may not have 'li' direct descendants a span or something else may be in the way
         component.children().each(function() {
-            $currentLevel = $(this);
+            var $currentLevel = $(this);
             $currentLevel.addClass(settings.levelClassPrefix + "-" + level);
             $.fn.mnmenu.levelRecursion(settings, $currentLevel, level);
         });
