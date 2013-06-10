@@ -3,7 +3,7 @@
  * Drop down menu
  *
  * Copyright (c) 2013 Marc Nuri
- * Version: 0.0.7
+ * Version: 0.0.8
  * Modified: 2013-06-06
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
@@ -42,15 +42,18 @@
 
     /**
      * Function called when mouse hovers a menu entry (&lt;li&gt;)
-     * @param {type} menu
+     * @param {jQuery} menu
      * @param {type} settings
      * @returns {undefined}
      */
     function mouseEnter(menu, settings) {
         var windowWidth = $(window).width();
         clearTimeout(menu.data('timer'));
-        //Remove hover class
-        menu.addClass(settings.hoverClassName);
+        //Add hover class
+        elementsToHover(menu, settings).each(function(){
+            $(this).addClass(settings.hoverClassName);
+        });
+//        menu.addClass(settings.hoverClassName);
         menu.children("ul").each(function() {
             var $this = $(this);
             var $parent = $this.parent("li");
@@ -90,14 +93,17 @@
 
     /**
      * Function called when mouse leaves a menu entry (&lt;li&gt;)
-     * @param {type} menu
+     * @param {jQuery} menu
      * @param {type} settings
      * @returns {undefined}
      */
     function mouseLeave(menu, settings) {
         clearTimeout(menu.data('timer'));
-        //Add Hover class
-        menu.removeClass(settings.hoverClassName);
+        //Remove hover class
+        elementsToHover(menu, settings).each(function(){
+            $(this).removeClass(settings.hoverClassName);
+        });
+        //menu.removeClass(settings.hoverClassName);
         menu.children("ul").each(function() {
             var $toHide = $(this);
             menu.data('timer', setTimeout(
@@ -107,6 +113,15 @@
         });
     }
     
+    /**
+     * 
+     * @param {jQuery} menu
+     * @param {type} settings
+     * @returns {jQuery}
+     */
+    function elementsToHover(menu, settings){
+        return $([menu, menu.children([".",settings.arrowClassName].join(""))]);
+    }
     
     /**
      * Recursive function to traverse the component and add a level to its &lt;li&gt; children

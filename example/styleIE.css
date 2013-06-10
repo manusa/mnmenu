@@ -100,15 +100,14 @@ ul.mnmenu li.level-0 span.arrow {
     width:10px;
     background:transparent url('menuArrowsFFFFFF.png') no-repeat 0px -100px;
 }
-ul.mnmenu li.level-0.hover span.arrow {
+ul.mnmenu li.level-0 span.arrow.hover {
     background:transparent url('menuArrowsFFFFFF.png') no-repeat -10px -100px;
 }
-ul.mnmenu li.level-0 li.hover span.arrow {
-    background:transparent url('menuArrowsFFFFFF.png') no-repeat -10px 0px;
-}
-ul.mnmenu li.level-0.hover li span.arrow,
-ul.mnmenu li.level-0 * li span.arrow {
+ul.mnmenu li.level-0 li span.arrow {
     background:transparent url('menuArrowsFFFFFF.png') no-repeat 0px 0px;
+}
+ul.mnmenu li.level-0 li span.arrow.hover {
+    background:transparent url('menuArrowsFFFFFF.png') no-repeat -10px 0px;
 }
 
 
