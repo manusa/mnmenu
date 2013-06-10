@@ -93,8 +93,9 @@
                 $this.finish();
                 $this.stop();
                 $this.show();
+            } else {
+                $this.slideDown(settings.duration);
             }
-            $this.slideDown(settings.duration);
         });
     };
 
