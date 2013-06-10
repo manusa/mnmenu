@@ -20,11 +20,13 @@ ul.mnmenu{
     list-style:none;
 }
 ul.mnmenu {
+    font-size:0px;
     line-height:25px;
     clear:both;
     background: #777777 url('menuLight.png') repeat-x 50% 50%;
 }
 ul.mnmenu li{
+    font-size:13px;
     list-style:none;
 }
 ul.mnmenu a {

@@ -59,41 +59,53 @@
             var $this = $(this);
             var $parent = $this.parent("li");
             var $parentContainer = $parent.closest("ul");
-            //Non-level-0 elements
-            if (!$parent.hasClass(
-                    [settings.levelClassPrefix, "-0"].join(""))) {
-                //Horizontal position
-                initialOffset = $parentContainer.offset().left + $parentContainer.outerWidth();
-                if (windowWidth < (initialOffset + $this.outerWidth())) {
-                    $this.css("left", "auto");
-                    $this.css("right", (
-                            //Container
-                                    ($parentContainer.outerWidth())
-                                    //Padding
-                                    + ($this.outerWidth() - $this.innerWidth())
-                                    ) + "px");
-                } else {
-                    $this.css("left", $parentContainer.outerWidth() + "px");
-                    $this.css("right", "auto");
-                }
-                //Vertical position
-                if ($parent.css("position") === "relative") {
-                    $this.css("top", "0px");
-                } else {
-                    $this.css("top", $parent.position().top + "px");
-                }
-            }
-            //level-0 elements
-            else {
-                $this.css("left", "0px");
-                $this.css("top", $this.closest("li").outerHeight() + "px");
-            }
-            //Stop current animation
+            //Stop previous (hiding) animation and display the object
+            //Calculations had already been made
             if ($this.is(":animated")) {
-                $this.finish();
-                $this.stop();
-                $this.show();
-            } else {
+                $this.stop(true, true).show();
+            }
+            //Was hidden
+            else {
+                //Set Z-Index
+                var zindex = 1;
+                var current = $parent;
+                while (current.get(0) !== $(document).get(0)) {
+                    var temp = parseInt(current.css("z-index"));
+                    if (!isNaN(temp) && temp > zindex) {
+                        zindex = temp;
+                    }
+                    current = current.parent();
+                }
+                $this.css("z-index", zindex + 1);
+                //Position forNon-level-0 elements
+                if (!$parent.hasClass(
+                        [settings.levelClassPrefix, "-0"].join(""))) {
+                    //Horizontal position
+                    initialOffset = $parentContainer.offset().left + $parentContainer.outerWidth();
+                    if (windowWidth < (initialOffset + $this.outerWidth())) {
+                        $this.css("left", "auto");
+                        $this.css("right", (
+                                //Container
+                                        ($parentContainer.outerWidth())
+                                        //Padding
+                                        + ($this.outerWidth() - $this.innerWidth())
+                                        ) + "px");
+                    } else {
+                        $this.css("left", $parentContainer.outerWidth() + "px");
+                        $this.css("right", "auto");
+                    }
+                    //Vertical position
+                    if ($parent.css("position") === "relative") {
+                        $this.css("top", "0px");
+                    } else {
+                        $this.css("top", $parent.position().top + "px");
+                    }
+                }
+                //level-0 elements
+                else {
+                    $this.css("left", "0px");
+                    $this.css("top", $this.closest("li").outerHeight() + "px");
+                }
                 $this.slideDown(settings.duration);
             }
         });
