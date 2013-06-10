@@ -11,6 +11,11 @@ with more features to come, so check for updates to see what's new in upcoming v
 The aim of the project is to create a very simple to style dropdown menu. You can create
 a totally styled menu in less than 100 line css sheet
 
+##Demo
+
+You can try a working demo of the project at:
+**[www.marcnuri.com](http://www.marcnuri.com)**
+
 ##Requirements
 
 This is a [JQuery](http://jquery.com/) plugin, so obviously it requires the jquery library.
