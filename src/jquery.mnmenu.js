@@ -120,7 +120,7 @@
      * @returns {jQuery}
      */
     function elementsToHover(menu, settings){
-        return $([menu, menu.children([".",settings.arrowClassName].join(""))]);
+        return $([menu, menu.children(":not(ul)")]);
     }
     
     /**
