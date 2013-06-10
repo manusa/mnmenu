@@ -36,4 +36,4 @@ $('#idmenu').mnmenu();
 
 ###CSS
 
-See the example style.css for customization options.
+See the example styleIE.css for customization options.
