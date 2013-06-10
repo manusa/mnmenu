@@ -31,63 +31,83 @@
             //Add effects to every LI
             $parentMenu.find("li").each(function() {
                 $(this).mouseenter(function() {
-                    var $enteredMenu = $(this);
-                    var windowWidth = $(window).width();
-                    clearTimeout($enteredMenu.data('timer'));
-                    //Remove hover class
-                    $enteredMenu.addClass(settings.hoverClassName);
-                    $enteredMenu.children("ul").each(function() {
-                        var $this = $(this);
-                        var $parent = $this.parent("li");
-                        var $parentContainer = $parent.closest("ul");
-                        //Non-level-0 elements
-                        if (!$parent.hasClass(
-                                [settings.levelClassPrefix, "-0"].join(""))) {
-                            //Horizontal position
-                            initialOffset = $parentContainer.offset().left + $parentContainer.outerWidth();
-                            if (windowWidth < (initialOffset + $this.outerWidth())) {
-                                $this.css("left", "auto");
-                                $this.css("right", (
-                                        //Container
-                                                ($parentContainer.outerWidth())
-                                                //Padding
-                                                + ($this.outerWidth() - $this.innerWidth())
-                                                ) + "px");
-                            } else {
-                                $this.css("left", $parentContainer.outerWidth() + "px");
-                                $this.css("right", "auto");
-                            }
-                            //Vertical position
-                            if ($parent.css("position") === "relative") {
-                                $this.css("top", "0px");
-                            } else {
-                                $this.css("top", $parent.position().top + "px");
-                            }
-                        }
-                        //level-0 elements
-                        else {
-                            $this.css("left", "0px");
-                            $this.css("top", $this.closest("li").outerHeight()+"px");
-                        }
-                        $this.slideDown(settings.duration);
-                    });
+                    mouseEnter($(this), settings);
                 });
                 $(this).mouseleave(function() {
-                    var $leftMenu = $(this);
-                    clearTimeout($leftMenu.data('timer'));
-                    //Add Hover class
-                    $leftMenu.removeClass(settings.hoverClassName);
-                    $leftMenu.children("ul").each(function() {
-                        var $toHide = $(this);
-                        $leftMenu.data('timer', setTimeout(
-                                function() {
-                                    $toHide.hide(settings.duration);
-                                }, settings.delay));
-                    });
+                    mouseLeave($(this), settings);
                 });
             });
         });
     };
+
+    /**
+     * Function called when mouse hovers a menu entry (&lt;li&gt;)
+     * @param {type} menu
+     * @param {type} settings
+     * @returns {undefined}
+     */
+    function mouseEnter(menu, settings) {
+        var windowWidth = $(window).width();
+        clearTimeout(menu.data('timer'));
+        //Remove hover class
+        menu.addClass(settings.hoverClassName);
+        menu.children("ul").each(function() {
+            var $this = $(this);
+            var $parent = $this.parent("li");
+            var $parentContainer = $parent.closest("ul");
+            //Non-level-0 elements
+            if (!$parent.hasClass(
+                    [settings.levelClassPrefix, "-0"].join(""))) {
+                //Horizontal position
+                initialOffset = $parentContainer.offset().left + $parentContainer.outerWidth();
+                if (windowWidth < (initialOffset + $this.outerWidth())) {
+                    $this.css("left", "auto");
+                    $this.css("right", (
+                            //Container
+                                    ($parentContainer.outerWidth())
+                                    //Padding
+                                    + ($this.outerWidth() - $this.innerWidth())
+                                    ) + "px");
+                } else {
+                    $this.css("left", $parentContainer.outerWidth() + "px");
+                    $this.css("right", "auto");
+                }
+                //Vertical position
+                if ($parent.css("position") === "relative") {
+                    $this.css("top", "0px");
+                } else {
+                    $this.css("top", $parent.position().top + "px");
+                }
+            }
+            //level-0 elements
+            else {
+                $this.css("left", "0px");
+                $this.css("top", $this.closest("li").outerHeight() + "px");
+            }
+            $this.slideDown(settings.duration);
+        });
+    }
+
+    /**
+     * Function called when mouse leaves a menu entry (&lt;li&gt;)
+     * @param {type} menu
+     * @param {type} settings
+     * @returns {undefined}
+     */
+    function mouseLeave(menu, settings) {
+        clearTimeout(menu.data('timer'));
+        //Add Hover class
+        menu.removeClass(settings.hoverClassName);
+        menu.children("ul").each(function() {
+            var $toHide = $(this);
+            menu.data('timer', setTimeout(
+                    function() {
+                        $toHide.hide(settings.duration);
+                    }, settings.delay));
+        });
+    }
+    
+    
     /**
      * Recursive function to traverse the component and add a level to its &lt;li&gt; children
      * @param {type} settings
@@ -118,7 +138,7 @@
             levelRecursion(settings, $currentLevel, level);
         });
     }
-    
+
     /**
      * Default plugin options
      */
