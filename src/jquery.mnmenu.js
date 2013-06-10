@@ -88,6 +88,12 @@
                 $this.css("left", "0px");
                 $this.css("top", $this.closest("li").outerHeight() + "px");
             }
+            //Stop current animation
+            if ($this.is(":animated")) {
+                $this.finish();
+                $this.stop();
+                $this.show();
+            }
             $this.slideDown(settings.duration);
         });
     };
