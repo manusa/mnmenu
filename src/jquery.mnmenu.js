@@ -12,9 +12,6 @@
  */
 (function($) {
     $.fn.mnmenu = function(op) {
-// Extend our default options with those provided.
-// Note that the first argument to extend is an empty
-// object – this is to keep from overriding our "defaults" object.
         var settings = $.extend({}, $.fn.mnmenu.defaults, op);
         return this.each(function() {
             var $parentMenu = $(this);
@@ -54,7 +51,6 @@
         $.fn.mnmenu.elementsToHover(menu, settings).each(function() {
             $(this).addClass(settings.hoverClassName);
         });
-//        menu.addClass(settings.hoverClassName);
         menu.children("ul").each(function() {
             var $this = $(this);
             var $parent = $this.parent("li");
@@ -123,7 +119,6 @@
         $.fn.mnmenu.elementsToHover(menu, settings).each(function() {
             $(this).removeClass(settings.hoverClassName);
         });
-        //menu.removeClass(settings.hoverClassName);
         menu.children("ul").each(function() {
             var $toHide = $(this);
             menu.data('timer', setTimeout(
@@ -136,7 +131,8 @@
 
 
     /**
-     * 
+     * Returns an array of elements to which to add/remove the "hover" 
+     * class when hovered
      * @param {jQuery} menu
      * @param {type} settings
      * @returns {jQuery}
@@ -146,7 +142,8 @@
     };
 
     /**
-     * Recursive function to traverse the component and add a level to its &lt;li&gt; children
+     * Recursive function to traverse the component and add a level-n class
+     *  to its &lt;li&gt; children and an arrow
      * @param {type} settings
      * @param {jQuery} component
      * @param {int} level
