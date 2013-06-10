@@ -75,11 +75,13 @@ ul.mnmenu li.level-0 ul{
 }
 ul.mnmenu li.level-0 li{
     position:relative;
-    margin:5px 0 5px 0;
     width:13em;
     padding:0 0.5em 0 0.5em;
     display:block;
     float:left;
+}
+ul.mnmenu li.level-0 li.middle {
+    margin:5px 0 5px 0;
 }
 ul.mnmenu li.level-0 li,
 ul.mnmenu li.level-0 li a,
