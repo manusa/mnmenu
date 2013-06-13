@@ -10,7 +10,7 @@
                 $('#idmenu').mnmenu();
                 //Create and init additional menus
                 var $demoContainer = $('#demoContainer');
-                $(["bluemenu"]).each(function() {
+                $(["bluemenu", "grayround"]).each(function() {
                     var color = this;
                     var $temp = $(["<ul></ul>"].join(""));
                     $demoContainer.append($temp);
@@ -41,6 +41,7 @@
             });</script>
         <link href="styleIE.css" type="text/css" rel="stylesheet"/>
         <link href="blue.css" type="text/css" rel="stylesheet"/>
+        <link href="grayround.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
         <ul id="idmenu">

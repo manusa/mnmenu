@@ -149,24 +149,30 @@
      * @param {int} level
      * @returns {undefined}
      */
-    $.fn.mnmenu.levelRecursion = function(settings, component, level) {
-        if (component.prop("tagName").toUpperCase() === "LI") {
-            if (component.parent().children().first().get(0) === component.get(0)) {
-                //Add Arrow to parent.
-                component.parent().closest("li").append(
+    $.fn.mnmenu.levelRecursion = function(settings, $component, level) {
+        if ($component.prop("tagName").toUpperCase() === "LI") {
+            var middle = true;
+            if ($component.parent().children().first().get(0) === $component.get(0)) {
+                //Add Arrow to parent (just once).
+                $component.parent().closest("li").append(
                         $(["<span ", "class='", settings.arrowClassName, "'></span>"].join("")
-                        ).append(" &#187;"));
+                        ).append(settings.arrowCharacter));
                 //Add FirstClassName to first <li>
-                component.addClass(settings.firstClassName);
-            } else if (component.parent().children().last().get(0) === component.get(0)) {
-                component.addClass(settings.lastClassName);
-            } else {
-                component.addClass(settings.middleClassName);
+                $component.addClass(settings.firstClassName);
+                middle = false;
+            } 
+            //component can be first and last (no else if)
+            if ($component.parent().children().last().get(0) === $component.get(0)) {
+                $component.addClass(settings.lastClassName);
+                middle = false;
+            } 
+            if(middle){
+                $component.addClass(settings.middleClassName);
             }
             level++;
         }
         //The component may not have 'li' direct descendants a span or something else may be in the way
-        component.children().each(function() {
+        $component.children().each(function() {
             var $currentLevel = $(this);
             $currentLevel.addClass(settings.levelClassPrefix + "-" + level);
             $.fn.mnmenu.levelRecursion(settings, $currentLevel, level);
@@ -183,8 +189,9 @@
         hoverClassName: "hover",
         //List elements levels
         levelClassPrefix: "level",
-        //
+        //Class for arrow <span>
         arrowClassName: "arrow",
+        arrowCharacter: " &#187;",
         //List elements position in level
         firstClassName: "first",
         middleClassName: "middle",

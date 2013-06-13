@@ -3,15 +3,16 @@
     Created on : Jun 11, 2013, 11:57:35 AM
     Author     : Marc Nuri <marc@marcnuri.com>
     Description:
-        Purpose of the stylesheet follows.
+       Stylesheet for mnmenu examples
 */
 
 ul.bluemenu {
+   
     margin:0;
     padding:0;
     list-style:none;
 
-    display:inline-block;
+    display:block;
     width:500px;
     margin-top:15px;
     height: 49px;
