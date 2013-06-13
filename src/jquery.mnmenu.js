@@ -3,7 +3,7 @@
  * Drop down menu
  *
  * Copyright (c) 2013 Marc Nuri
- * Version: 0.0.10
+ * Version: 0.0.11
  * Modified: 2013-06-06
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
