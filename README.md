@@ -25,17 +25,17 @@ Or browsing the example.html in the examples directory. Either by downloading th
 - Menu calculates window bounds so that it's always in the client view area.
 - Animations for display transitions. Menu is shown an hidden with animations.
 
-##Requirements
-
-- This is a [JQuery](http://jquery.com/) plugin, so obviously it requires the jquery library.
-- That's it.
-
 ##Support
 
 You can ask for support or send your feedback messages to our mailing list hosted 
 in nabble (there's no need to register):
 
 http://mnmenu.54161.x6.nabble.com
+
+##Requirements
+
+- This is a [JQuery](http://jquery.com/) plugin, so obviously it requires the jquery library.
+- That's it.
 
 ##Usage
 
