@@ -23,6 +23,7 @@ Or browsing the example.html in the examples directory. Either by downloading th
 
 - Nested list menu. The menu can have several nested hierarchy levels.
 - Menu calculates window bounds so that it's always in the client view area.
+- Menu can be orientated so that it displays left-to-right, right-to-left, bottom-to-top....
 - Animations for display transitions. Menu is shown an hidden with animations.
 
 ##Support
