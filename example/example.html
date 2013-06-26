@@ -6,14 +6,38 @@
         <script src="../lib/jqmin.1.10.1.js" type="text/javascript"></script>
         <script src="../src/jquery.mnmenu.js" type="text/javascript"></script>
         <script>$(document).ready(function() {
-                //Init regular menu
                 $('#idmenu').mnmenu();
                 //Create and init additional menus
                 var $demoContainer = $('#demoContainer');
+                $demoContainer.append($("<h3>Regular menus</h3>"));
+                $demoContainer.append($("<p>Menus with different colors and styling.</p>"));
+                //Create lists
                 $(["bluemenu", "grayround", "squarewhite", "blue2menu"]).each(function() {
                     var color = this;
-                    var $temp = $(["<ul></ul>"].join(""));
+                    var $temp = generateMenu(color);
                     $demoContainer.append($temp);
+                    $temp.mnmenu({menuClassName: color.toString()});
+                });
+                $demoContainer.append($(["<h3>Right aligned menu</h3>"].join("")));
+                $demoContainer.append($("<p>This menu is the reversed version of the top menu."
+                    +" Menus will be displayed from bottom to top and from right to left.</p>"));
+                //Init right to left menu with custom level settings
+                var rightMenuLevelSettings = {};
+                //Defaults
+                rightMenuLevelSettings[0] = new MNLevelSettings();
+                rightMenuLevelSettings[0].parentAttachmentPosition = "SW";
+                rightMenuLevelSettings[0].attachmentPosition = "SE";
+                //First level
+                rightMenuLevelSettings[1] = new MNLevelSettings();
+                rightMenuLevelSettings[1].parentAttachmentPosition = "NE";
+                rightMenuLevelSettings[1].attachmentPosition = "SE";
+                var $rightbtmenu = generateMenu("rightbtmenu");
+                $demoContainer.append($rightbtmenu);
+                $rightbtmenu.mnmenu({menuClassName: "rightbtmenu", levelSettings: rightMenuLevelSettings});
+
+                /////////////////////////////////////////////////////
+                function generateMenu(id) {
+                    var $temp = $(["<ul id='", id, "'></ul>"].join(""));
                     //ADD Submenus
                     for (var i = 1; i < 6; i++) {
                         var label = ["Level-", i].join("");
@@ -21,8 +45,8 @@
                         $temp.append($firstLevel);
                         addLevels(1, 5, $firstLevel, label);
                     }
-                    $temp.mnmenu({menuClassName: color.toString()});
-                });
+                    return $temp;
+                }
                 function addLevels(current, max, $component, label) {
                     var $newContainer = null;
                     for (var i = 1; i < Math.floor(Math.random() * 6) + 1; i++) {
@@ -44,6 +68,7 @@
         <link href="grayround.css" type="text/css" rel="stylesheet"/>
         <link href="squarewhite.css" type="text/css" rel="stylesheet"/>
         <link href="blue2.css" type="text/css" rel="stylesheet"/>
+        <link href="rightbt.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
         <ul id="idmenu">

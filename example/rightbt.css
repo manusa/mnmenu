@@ -1,0 +1,154 @@
+/* 
+    Document   : right.css
+    Created on : Jun 19, 2013, 13:31:00
+    Author     : Marc Nuri <marc@marcnuri.com>
+    Description:
+       Stylesheet for Right aligned menu
+*/
+
+ul.rightbtmenu{
+    margin:10px 0 0 0;
+    padding:0;
+    list-style:none;
+    text-align: right;
+}
+ul.rightbtmenu {
+    font-size:0px;
+    line-height:25px;
+    clear:both;
+    background: #777777 url('menuLight.png') repeat-x 50% 50%;
+}
+ul.rightbtmenu li{
+    font-size:13px;
+    list-style:none;
+    text-align: right;
+}
+ul.rightbtmenu a {
+    padding: 0;
+    text-decoration:none;
+}
+ul.rightbtmenu li.level-0 {
+    position:relative;
+    display: -moz-inline-stack;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    min-height: 25px;
+    line-height:25px;
+    height: 25px;
+    _height: 25px;
+    vertical-align: top;
+    padding:0 25px 0 10px;
+    border-left: 1px solid #222222;
+}
+ul.rightbtmenu li.level-0 a,
+ul.rightbtmenu li.level-0 a:visited  {
+    color: black;
+}
+
+ul.rightbtmenu li.level-0.hover a {
+    color:white;
+}
+ul.rightbtmenu li.level-0.first{
+    border-left:none;
+}
+ul.rightbtmenu li.level-0.hover{
+    background: #333333 url('menuDark.png') repeat-x 50% 50%;
+    outline:0;
+}
+
+ul.rightbtmenu li.level-0 ul{
+    position:absolute;
+    display: none;
+    margin:0;
+    padding:0;
+    background-color:#333;
+    width:10em;
+    -webkit-box-shadow:  0px -2px 6px 1px #222;
+    box-shadow:  0px -2px 6px 1px #222;
+}
+ul.rightbtmenu li.level-0 li{
+    position:relative;
+    width:9em;
+    padding:0 0.5em 0 0.5em;
+    display:block;
+    float:right;
+}
+ul.rightbtmenu li.level-0 li.middle {
+    margin:5px 0 5px 0;
+}
+ul.rightbtmenu li.level-0 li,
+ul.rightbtmenu li.level-0 li a,
+ul.rightbtmenu li.level-0 li a:visited  {
+    color: white;
+    word-break: break-all;
+}
+ul.rightbtmenu li.level-0 li.hover{
+    background: #666;
+    outline:0;
+}
+
+/* ARROWS */
+ul.rightbtmenu li.level-0 span.arrow {
+    position:absolute;
+    overflow: hidden;
+    text-indent: 9999em;
+    top:6px;
+    right:7px;
+    width:10px;
+    background:transparent url('menuArrowsCWFFFFFF.png') no-repeat -10px 0px;
+}
+ul.rightbtmenu li.level-0 span.arrow.hover {
+    background:transparent url('menuArrowsCWFFFFFF.png') no-repeat 0px 0px;
+}
+ul.rightbtmenu li.level-0 li span.arrow {
+    right:auto;
+    left:7px;
+    background:transparent url('menuArrowsCWFFFFFF.png') no-repeat -10px -100px;
+}
+ul.rightbtmenu li.level-0 li span.arrow.hover {
+    background:transparent url('menuArrowsCWFFFFFF.png') no-repeat 0px -100px;
+}
+
+
+/** NON-MENU OTHER **/
+ul.rightbtmenu hr,
+ul.rightbtmenu li.level-0 li hr{
+    border:0;
+    color:#555;
+    background-color:#555;
+    height:1px;
+}
+
+body, input, select, textarea, button {
+    font: 13px Helvetica, arial, freesans, clean, sans-serif;
+    line-height: 1.4;
+}
+div.content{
+    margin:5px;
+}
+.content {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333333;
+}
+.content h1 {
+    font-size:2.5em;
+}
+.content h2 {
+    font-size: 2em;
+    border-bottom: 1px solid #eee;
+}
+.content a {
+    color: #4183c4;
+    text-decoration: none;
+}
+.content a:hover {
+    text-decoration:underline;
+}
+.content p{
+    margin: 15px 0;
+}
+div.copyright {
+    margin:100px 0 0 0;
+}
