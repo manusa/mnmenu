@@ -88,7 +88,7 @@
             else {
                 //Set Z-Index
                 var zindex = 1;
-                var current = $parent;
+                var current = $this;
                 while (current.get(0) !== $(document).get(0)) {
                     var temp = parseInt(current.css("z-index"));
                     if (!isNaN(temp) && temp > zindex) {
@@ -245,7 +245,9 @@
     $.fn.mnmenu.levelRecursion = function(settings, $component, level) {
         if ($component.prop("tagName").toUpperCase() === "LI") {
             var middle = true;
-            if ($component.parent().children().first().get(0) === $component.get(0)) {
+            //Add arrows to parent <li>. This can only happen from level 1
+            if ($component.parent().children().first().get(0) === $component.get(0)
+                    && level > 0) {
                 //Add Arrow to parent (just once).
                 $component.parent().closest("li").append(
                         $(["<span ", "class='", settings.arrowClassName, "'></span>"].join("")
