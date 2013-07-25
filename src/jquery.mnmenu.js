@@ -51,14 +51,26 @@
                 $(this).css("display", "none");
             });
             //Add event listeners to every LI
-            $parentMenu.find("li").each(function() {
-                $(this).mouseenter(function() {
-                    $.fn.mnmenu.mouseEnter($(this), settings);
+            if ($.fn.hoverIntent) {
+                $parentMenu.find("li").each(function() {
+                    $(this).hoverIntent(
+                            function() {
+                                $.fn.mnmenu.mouseEnter($(this), settings);
+                            },
+                            function() {
+                                $.fn.mnmenu.mouseLeave($(this), settings);
+                            });
                 });
-                $(this).mouseleave(function() {
-                    $.fn.mnmenu.mouseLeave($(this), settings);
+            } else {
+                $parentMenu.find("li").each(function() {
+                    $(this).mouseenter(function() {
+                        $.fn.mnmenu.mouseEnter($(this), settings);
+                    });
+                    $(this).mouseleave(function() {
+                        $.fn.mnmenu.mouseLeave($(this), settings);
+                    });
                 });
-            });
+            }
         });
     };
 
