@@ -34,6 +34,11 @@ ul.mnmenu a {
     text-decoration:none;
 }
 ul.mnmenu li.level-0 {
+    -webkit-transition: all linear 0.4s;
+    -moz-transition: all linear 0.4s;
+    -o-transition: all linear 0.4s;
+    -ms-transition: all linear 0.4s;
+    transition: all linear 0.4s;
     position:relative;
     display: -moz-inline-stack;
     display: inline-block;
@@ -49,16 +54,28 @@ ul.mnmenu li.level-0 {
 }
 ul.mnmenu li.level-0 a,
 ul.mnmenu li.level-0 a:visited  {
+    -webkit-transition: all linear 0.4s;
+    -moz-transition: all linear 0.4s;
+    -o-transition: all linear 0.4s;
+    -ms-transition: all linear 0.4s;
+    transition: all linear 0.4s;
     color: black;
 }
 
-ul.mnmenu li.level-0.hover a {
+ul.mnmenu li.level-0.hover a,
+ul.mnmenu li.level-0 a:hover {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+    transition: none;
     color:white;
 }
 ul.mnmenu li.level-0.first{
     border-left:none;
 }
-ul.mnmenu li.level-0.hover{
+ul.mnmenu li.level-0.hover,
+ul.mnmenu li.level-0:hover{
     background: #333333 url('menuDark.png') repeat-x 50% 50%;
     outline:0;
 }
@@ -89,7 +106,8 @@ ul.mnmenu li.level-0 li a:visited  {
     color: white;
     word-break: break-all;
 }
-ul.mnmenu li.level-0 li.hover{
+ul.mnmenu li.level-0 li.hover,
+ul.mnmenu li.level-0 li:hover{
     background: #666;
     outline:0;
 }
