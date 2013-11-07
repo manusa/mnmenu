@@ -3,7 +3,7 @@
  * Drop down menu
  *
  * Copyright (c) 2013 Marc Nuri
- * Version: 0.0.13
+ * Version: 0.0.14
  * Modified: 2013-07-25
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
@@ -54,13 +54,13 @@
             if ($.fn.hoverIntent) {
                 $parentMenu.find("li").each(function() {
                     var $this = $(this);
-                    $(this).hoverIntent(
-                        function() {
-                            $.fn.mnmenu.mouseEnter($(this), settings);
-                        },
-                        function() {
-                            $.fn.mnmenu.mouseLeave($(this), settings);
-                        });
+                    $this.hoverIntent(
+                            function() {
+                                $.fn.mnmenu.mouseEnter($(this), settings);
+                            },
+                            function() {
+                                $.fn.mnmenu.mouseLeave($(this), settings);
+                            });
                     $this.click(function(e) {
                         $.fn.mnmenu.mouseClick($(this), settings);
                         e.stopImmediatePropagation();
@@ -248,6 +248,8 @@
      * @returns {undefined}
      */
     $.fn.mnmenu.mouseClick = function($menu, settings) {
+        //Contribution by https://github.com/akcoder
+        //TODO: Rething function to adad customization capabilities (Ajax links, support for href target...)
         clearTimeout($menu.data('timer'));
         var $link = $menu.children('a');
         if ($link.attr('href')) {
@@ -286,7 +288,7 @@
                 //Add Arrow to parent (just once).
                 $component.parent().closest("li").append(
                         $(["<span ", "class='", settings.arrowClassName, "'></span>"].join("")
-                        ).append(settings.arrowCharacter));
+                                ).append(settings.arrowCharacter));
                 //Add FirstClassName to first <li>
                 $component.addClass(settings.firstClassName);
                 middle = false;
