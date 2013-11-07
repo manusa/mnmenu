@@ -69,7 +69,11 @@
             } else {
                 $parentMenu.find("li").each(function() {
                     var $this = $(this);
-                    $this.mouseenter(function() {
+                    $this.mouseenter(function(e) {
+                        if (e.fromElement !== null && e.fromElement.tagName === 'SELECT') {
+                            e.preventDefault();
+                            return;
+                        }
                         $.fn.mnmenu.mouseEnter($(this), settings);
                     });
                     $this.mouseleave(function() {
