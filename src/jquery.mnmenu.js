@@ -53,21 +53,31 @@
             //Add event listeners to every LI
             if ($.fn.hoverIntent) {
                 $parentMenu.find("li").each(function() {
+                    var $this = $(this);
                     $(this).hoverIntent(
-                            function() {
-                                $.fn.mnmenu.mouseEnter($(this), settings);
-                            },
-                            function() {
-                                $.fn.mnmenu.mouseLeave($(this), settings);
-                            });
+                        function() {
+                            $.fn.mnmenu.mouseEnter($(this), settings);
+                        },
+                        function() {
+                            $.fn.mnmenu.mouseLeave($(this), settings);
+                        });
+                    $this.click(function(e) {
+                        $.fn.mnmenu.mouseClick($(this), settings);
+                        e.stopImmediatePropagation();
+                    });
                 });
             } else {
                 $parentMenu.find("li").each(function() {
-                    $(this).mouseenter(function() {
+                    var $this = $(this);
+                    $this.mouseenter(function() {
                         $.fn.mnmenu.mouseEnter($(this), settings);
                     });
-                    $(this).mouseleave(function() {
+                    $this.mouseleave(function() {
                         $.fn.mnmenu.mouseLeave($(this), settings);
+                    });
+                    $this.click(function(e) {
+                        $.fn.mnmenu.mouseClick($(this), settings);
+                        e.stopImmediatePropagation();
                     });
                 });
             }
@@ -231,6 +241,19 @@
     };
 
 
+    /**
+     * Function called when mouse clicks a menu entry (&lt;li&gt;)
+     * @param {jQuery} $menu
+     * @param {type} settings
+     * @returns {undefined}
+     */
+    $.fn.mnmenu.mouseClick = function($menu, settings) {
+        clearTimeout($menu.data('timer'));
+        var $link = $menu.children('a');
+        if ($link.attr('href')) {
+            window.location.href = $link.attr('href');
+        }
+    };
 
     /**
      * Returns an array of elements to which to add/remove the "hover" 
