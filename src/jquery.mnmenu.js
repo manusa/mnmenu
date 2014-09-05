@@ -251,33 +251,30 @@
     */
 
     $.fn.mnmenu.resetView = function($menu, settings) {
-        // Clone current content and store it in a variable (include event listeners)
-        var $currentContent = $menu.children().clone(true, true);
-        // Clear current menu content.
-        $menu.html('');
-        // Restore menu as if it wasn't collapsed.
+        //Find the responsiveMenu button
         var responsiveSelector = ['li.' + settings.resposniveMenuButtonClass].join('');
-        var $responsiveMenu = $currentContent.find(responsiveSelector).addBack(responsiveSelector);
+        var $responsiveMenu = $menu.find(responsiveSelector).addBack(responsiveSelector);
         if ($responsiveMenu.length !== 0) {
-            $currentContent = $responsiveMenu.children('ul').children().clone(true, true);
-            $menu.append($currentContent);
+            //Move children to top and remove button
+            var $children  = $responsiveMenu.children('ul').children();
+            $menu.append($children);
+            $responsiveMenu.remove();
             $.fn.mnmenu.levelRecursion(settings, $menu, 0);
-        } else {
-            $menu.append($currentContent);
-        }
+        } 
+        //Calculate expanded width
         var menuWidth = 0;
         $menu.find(['li.', settings.levelClassPrefix, '-0'].join('')).each(function() {
             menuWidth += $(this).outerWidth();
         });
         if ($(window).width() < (menuWidth + settings.responsiveMenuWindowWidthFudge)) {
-            var $currentContent = $menu.children().clone(true);
-            $menu.html('');
+            //Add responsive button and move children
+            var $children  = $menu.children();
             var $responsiveMenu = $(["<li class='", settings.resposniveMenuButtonClass,
                 " first'>", settings.resposniveMenuButtonLabel,
                 "<ul></ul></li>"].join(''));
-            $.fn.mnmenu.addEventListeners($responsiveMenu, settings);
-            $responsiveMenu.children('ul').append($currentContent);
             $menu.append($responsiveMenu);
+            $.fn.mnmenu.addEventListeners($responsiveMenu, settings);
+            $responsiveMenu.children('ul').append($children);
             $.fn.mnmenu.levelRecursion(settings, $menu, 0);
         }
     };
