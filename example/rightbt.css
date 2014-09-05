@@ -120,10 +120,7 @@ ul.rightbtmenu li.level-0 li hr{
     height:1px;
 }
 
-body, input, select, textarea, button {
-    font: 13px Helvetica, arial, freesans, clean, sans-serif;
-    line-height: 1.4;
-}
+
 div.content{
     margin:5px;
 }

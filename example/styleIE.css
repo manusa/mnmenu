@@ -143,7 +143,7 @@ ul.mnmenu li.level-0 li hr{
 }
 
 body, input, select, textarea, button {
-    font: 13px Helvetica, arial, freesans, clean, sans-serif;
+    font: 1em Helvetica, arial, freesans, clean, sans-serif;
     line-height: 1.4;
 }
 div.content{
