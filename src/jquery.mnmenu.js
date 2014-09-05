@@ -3,8 +3,8 @@
  * Drop down menu
  *
  * Copyright (c) 2013 Marc Nuri
- * Version: 0.0.15
- * Modified: 2013-07-25
+ * Version: 0.0.16
+ * Modified: 2014-09-04
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
  *
@@ -40,13 +40,12 @@
         ////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////
         // Window resize event for responsive features
-        {
-            var $this = $(this);
-            $(window).resize(function() {
-                $.fn.mnmenu.windowResize($this, settings);
-            });
-        }
-        return this.each(function() {
+        var $this = $(this);
+        $(window).resize(function() {
+            $.fn.mnmenu.windowResize($this, settings);
+        });
+        ////////////////////////////////////////////////////////////////////////
+        this.each(function() {
             var $parentMenu = $(this);
             if ($parentMenu.prop("tagName").toUpperCase() !== "UL") {
                 $.error("This function can only be called in <ul> elements.");
@@ -58,49 +57,13 @@
             $parentMenu.find("ul").each(function() {
                 $(this).css("display", "none");
             });
-            //Add event listeners to every LI
-            $parentMenu.find("li").each(function() {
-                var $this = $(this);
-                $.fn.mnmenu.addEventListeners($this, settings);
-            });
         });
+        $.fn.mnmenu.resetView($this, settings);
+        return $this;
     };
 
     $.fn.mnmenu.windowResize = function($menu, settings) {
-        debugger;
-        // Reset current content and store it in a variable.
-        var currentContent = $menu.html();
-        $menu.html('');
-        // Restore menu as if it wasn't collapsed.
-        var responsiveSelector = ['li.' + settings.resposniveMenuButtonClass].join('');
-        var $responsiveMenu = $(currentContent).find(responsiveSelector).addBack(responsiveSelector);
-        if ($responsiveMenu.length !== 0) {
-            currentContent = $responsiveMenu.children('ul').html();
-            $menu.html(currentContent);
-            $.fn.mnmenu.levelRecursion(settings, $menu, 0);
-        } else {
-            $menu.html(currentContent);
-        }
-        var menuWidth = 0;
-        $menu.find(['li.',settings.levelClassPrefix,'-0'].join('')).each(function(){
-            menuWidth += $(this).outerWidth();
-        });
-        if ($(window).width() < menuWidth) {
-            var currentContent = $menu.html();
-            $menu.html('');
-            var responsiveMenu = $(["<li class='",settings.resposniveMenuButtonClass,
-                    "'><a href='#'>",settings.resposniveMenuButtonLabel,
-                    "</a><ul></ul></li>"].join(''));
-            $.fn.mnmenu.addEventListeners(responsiveMenu, settings);
-            responsiveMenu.children('ul').html(currentContent);
-            $menu.append(responsiveMenu);
-            $.fn.mnmenu.levelRecursion(settings, $menu, 0);
-        }
-        //Add event listeners to every LI (When adding and removing html content, events are deleted
-        $menu.find("li").each(function() {
-            var $this = $(this);
-            $.fn.mnmenu.addEventListeners($this, settings);
-        });
+        $.fn.mnmenu.resetView($menu, settings);
     };
 
     /**
@@ -276,17 +239,40 @@
         }
     };
 
-    /**
-     * Returns an array of elements to which to add/remove the "hover" 
-     * class when hovered
-     * @param {jQuery} $menu
-     * @param {type} settings
-     * @returns {jQuery}
-     */
-    $.fn.mnmenu.elementsToHover = function($menu, settings) {
-        //All children which aren't containers (li, span, links...)
-        //This makes it easier for styling.
-        return $([$menu, $menu.children(":not(ul)")]);
+    $.fn.mnmenu.resetView = function($menu, settings) {
+        // Reset current content and store it in a variable.
+        var currentContent = $menu.html();
+        $menu.html('');
+        // Restore menu as if it wasn't collapsed.
+        var responsiveSelector = ['li.' + settings.resposniveMenuButtonClass].join('');
+        var $responsiveMenu = $(currentContent).find(responsiveSelector).addBack(responsiveSelector);
+        if ($responsiveMenu.length !== 0) {
+            currentContent = $responsiveMenu.children('ul').html();
+            $menu.html(currentContent);
+            $.fn.mnmenu.levelRecursion(settings, $menu, 0);
+        } else {
+            $menu.html(currentContent);
+        }
+        var menuWidth = 0;
+        $menu.find(['li.', settings.levelClassPrefix, '-0'].join('')).each(function() {
+            menuWidth += $(this).outerWidth();
+        });
+        if ($(window).width() < (menuWidth + settings.responsiveMenuWindowWidthFudge)) {
+            var currentContent = $menu.html();
+            $menu.html('');
+            var responsiveMenu = $(["<li class='", settings.resposniveMenuButtonClass,
+                " first'>", settings.resposniveMenuButtonLabel,
+                "<ul></ul></li>"].join(''));
+            $.fn.mnmenu.addEventListeners(responsiveMenu, settings);
+            responsiveMenu.children('ul').html(currentContent);
+            $menu.append(responsiveMenu);
+            $.fn.mnmenu.levelRecursion(settings, $menu, 0);
+        }
+        //Add event listeners to every LI (When adding and removing html content, events are deleted
+        $menu.find("li").each(function() {
+            var $this = $(this);
+            $.fn.mnmenu.addEventListeners($this, settings);
+        });
     };
 
     /**
@@ -326,11 +312,11 @@
         $component.children().each(function() {
             var $currentLevel = $(this);
             //Remove old Level class attribute
-            $currentLevel.removeClass([settings.levelClassPrefix,"-",level].join(''));
-            $currentLevel.removeClass([settings.levelClassPrefix, "-",(level - 1)].join(''));
-            $currentLevel.removeClass([settings.levelClassPrefix, "-",(level + 1)].join(''));
+            $currentLevel.removeClass([settings.levelClassPrefix, "-", level].join(''));
+            $currentLevel.removeClass([settings.levelClassPrefix, "-", (level - 1)].join(''));
+            $currentLevel.removeClass([settings.levelClassPrefix, "-", (level + 1)].join(''));
             //Add current level class attribute
-            $currentLevel.addClass([settings.levelClassPrefix ,"-",level].join(''));
+            $currentLevel.addClass([settings.levelClassPrefix, "-", level].join(''));
             $.fn.mnmenu.levelRecursion(settings, $currentLevel, level);
         });
     };
@@ -371,6 +357,19 @@
     };
 
     /**
+     * Returns an array of elements to which to add/remove the "hover" 
+     * class when hovered
+     * @param {jQuery} $menu
+     * @param {type} settings
+     * @returns {jQuery}
+     */
+    $.fn.mnmenu.elementsToHover = function($menu, settings) {
+        //All children which aren't containers (li, span, links...)
+        //This makes it easier for styling.
+        return $([$menu, $menu.children(":not(ul)")]);
+    };
+
+    /**
      * Default plugin options
      */
     $.fn.mnmenu.defaults = {
@@ -392,6 +391,7 @@
         defaultParentAttachmentPosition: "NE",
         defaultAttachmentPosition: "NW",
         //Responsive
+        responsiveMenuWindowWidthFudge: 10,
         resposniveMenuButtonClass: "mnresponsive-button",
         resposniveMenuButtonLabel: "Menu"
     };
