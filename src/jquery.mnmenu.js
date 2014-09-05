@@ -38,6 +38,14 @@
         //Clone custom level settings so that defaults remain and apply custom;
         settings.levelSettings = $.extend({}, settings.levelSettings, tempLevelSettings);
         ////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////
+        // Window resize event for responsive features
+        {
+            var $this = $(this);
+            $(window).resize(function() {
+                $.fn.mnmenu.windowResize($this, settings);
+            });
+        }
         return this.each(function() {
             var $parentMenu = $(this);
             if ($parentMenu.prop("tagName").toUpperCase() !== "UL") {
@@ -51,36 +59,47 @@
                 $(this).css("display", "none");
             });
             //Add event listeners to every LI
-            if ($.fn.hoverIntent) {
-                $parentMenu.find("li").each(function() {
-                    var $this = $(this);
-                    $this.hoverIntent(
-                            function() {
-                                $.fn.mnmenu.mouseEnter($(this), settings);
-                            },
-                            function() {
-                                $.fn.mnmenu.mouseLeave($(this), settings);
-                            });
-                    $this.click(function(e) {
-                        $.fn.mnmenu.mouseClick($(this), settings);
-                        e.stopImmediatePropagation();
-                    });
-                });
-            } else {
-                $parentMenu.find("li").each(function() {
-                    var $this = $(this);
-                    $this.mouseenter(function() {
-                        $.fn.mnmenu.mouseEnter($(this), settings);
-                    });
-                    $this.mouseleave(function() {
-                        $.fn.mnmenu.mouseLeave($(this), settings);
-                    });
-                    $this.click(function(e) {
-                        $.fn.mnmenu.mouseClick($(this), settings);
-                        e.stopImmediatePropagation();
-                    });
-                });
-            }
+            $parentMenu.find("li").each(function() {
+                var $this = $(this);
+                $.fn.mnmenu.addEventListeners($this, settings);
+            });
+        });
+    };
+
+    $.fn.mnmenu.windowResize = function($menu, settings) {
+        debugger;
+        // Reset current content and store it in a variable.
+        var currentContent = $menu.html();
+        $menu.html('');
+        // Restore menu as if it wasn't collapsed.
+        var responsiveSelector = ['li.' + settings.resposniveMenuButtonClass].join('');
+        var $responsiveMenu = $(currentContent).find(responsiveSelector).addBack(responsiveSelector);
+        if ($responsiveMenu.length !== 0) {
+            currentContent = $responsiveMenu.children('ul').html();
+            $menu.html(currentContent);
+            $.fn.mnmenu.levelRecursion(settings, $menu, 0);
+        } else {
+            $menu.html(currentContent);
+        }
+        var menuWidth = 0;
+        $menu.find(['li.',settings.levelClassPrefix,'-0'].join('')).each(function(){
+            menuWidth += $(this).outerWidth();
+        });
+        if ($(window).width() < menuWidth) {
+            var currentContent = $menu.html();
+            $menu.html('');
+            var responsiveMenu = $(["<li class='",settings.resposniveMenuButtonClass,
+                    "'><a href='#'>",settings.resposniveMenuButtonLabel,
+                    "</a><ul></ul></li>"].join(''));
+            $.fn.mnmenu.addEventListeners(responsiveMenu, settings);
+            responsiveMenu.children('ul').html(currentContent);
+            $menu.append(responsiveMenu);
+            $.fn.mnmenu.levelRecursion(settings, $menu, 0);
+        }
+        //Add event listeners to every LI (When adding and removing html content, events are deleted
+        $menu.find("li").each(function() {
+            var $this = $(this);
+            $.fn.mnmenu.addEventListeners($this, settings);
         });
     };
 
@@ -249,7 +268,7 @@
      */
     $.fn.mnmenu.mouseClick = function($menu, settings) {
         //Contribution by https://github.com/akcoder
-        //TODO: Rething function to adad customization capabilities (Ajax links, support for href target...)
+        //TODO: Rethink function to add customization capabilities (Ajax links, support for href target...)
         clearTimeout($menu.data('timer'));
         var $link = $menu.children('a');
         if ($link.attr('href')) {
@@ -306,9 +325,49 @@
         //The component may not have 'li' direct descendants a span or something else may be in the way
         $component.children().each(function() {
             var $currentLevel = $(this);
-            $currentLevel.addClass(settings.levelClassPrefix + "-" + level);
+            //Remove old Level class attribute
+            $currentLevel.removeClass([settings.levelClassPrefix,"-",level].join(''));
+            $currentLevel.removeClass([settings.levelClassPrefix, "-",(level - 1)].join(''));
+            $currentLevel.removeClass([settings.levelClassPrefix, "-",(level + 1)].join(''));
+            //Add current level class attribute
+            $currentLevel.addClass([settings.levelClassPrefix ,"-",level].join(''));
             $.fn.mnmenu.levelRecursion(settings, $currentLevel, level);
         });
+    };
+
+    /**
+     * Add event listeners to menu li
+     * @param {type} $li
+     * @param {type} settings
+     * @returns {undefined}
+     */
+    $.fn.mnmenu.addEventListeners = function($li, settings) {
+        if ($.fn.hoverIntent) {
+            var $this = $li;
+            $this.hoverIntent(
+                    function() {
+                        $.fn.mnmenu.mouseEnter($(this), settings);
+                    },
+                    function() {
+                        $.fn.mnmenu.mouseLeave($(this), settings);
+                    });
+            $this.click(function(e) {
+                $.fn.mnmenu.mouseClick($(this), settings);
+                e.stopImmediatePropagation();
+            });
+        } else {
+            var $this = $li;
+            $this.mouseenter(function() {
+                $.fn.mnmenu.mouseEnter($(this), settings);
+            });
+            $this.mouseleave(function() {
+                $.fn.mnmenu.mouseLeave($(this), settings);
+            });
+            $this.click(function(e) {
+                $.fn.mnmenu.mouseClick($(this), settings);
+                e.stopImmediatePropagation();
+            });
+        }
     };
 
     /**
@@ -331,7 +390,10 @@
         delay: 150,
         duration: 250,
         defaultParentAttachmentPosition: "NE",
-        defaultAttachmentPosition: "NW"
+        defaultAttachmentPosition: "NW",
+        //Responsive
+        resposniveMenuButtonClass: "mnresponsive-button",
+        resposniveMenuButtonLabel: "Menu"
     };
     $.fn.mnmenu.defaults.levelSettings = {};
     //Define defaultTopLevelSettings

@@ -34,11 +34,11 @@ ul.mnmenu a {
     text-decoration:none;
 }
 ul.mnmenu li.level-0 {
-    -webkit-transition: all linear 0.4s;
-    -moz-transition: all linear 0.4s;
-    -o-transition: all linear 0.4s;
-    -ms-transition: all linear 0.4s;
-    transition: all linear 0.4s;
+    -webkit-transition: background linear 0.4s;
+    -moz-transition: background linear 0.4s;
+    -o-transition: background linear 0.4s;
+    -ms-transition: background linear 0.4s;
+    transition: background linear 0.4s;
     position:relative;
     display: -moz-inline-stack;
     display: inline-block;
@@ -54,11 +54,11 @@ ul.mnmenu li.level-0 {
 }
 ul.mnmenu li.level-0 a,
 ul.mnmenu li.level-0 a:visited  {
-    -webkit-transition: all linear 0.4s;
-    -moz-transition: all linear 0.4s;
-    -o-transition: all linear 0.4s;
-    -ms-transition: all linear 0.4s;
-    transition: all linear 0.4s;
+    -webkit-transition: background linear 0.4s;
+    -moz-transition: background linear 0.4s;
+    -o-transition: background linear 0.4s;
+    -ms-transition: background linear 0.4s;
+    transition: background linear 0.4s;
     color: black;
 }
 
