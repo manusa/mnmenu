@@ -58,6 +58,12 @@
                 $(this).css("display", "none");
             });
         });
+
+        //Add event listeners to every LI (When adding and removing html content, events are deleted
+        $this.find("li").each(function() {
+            var $this = $(this);
+            $.fn.mnmenu.addEventListeners($this, settings);
+        });
         $.fn.mnmenu.resetView($this, settings);
         return $this;
     };
@@ -245,39 +251,35 @@
     */
 
     $.fn.mnmenu.resetView = function($menu, settings) {
-        // Reset current content and store it in a variable.
-        var currentContent = $menu.html();
+        // Clone current content and store it in a variable (include event listeners)
+        var $currentContent = $menu.children().clone(true, true);
+        // Clear current menu content.
         $menu.html('');
         // Restore menu as if it wasn't collapsed.
         var responsiveSelector = ['li.' + settings.resposniveMenuButtonClass].join('');
-        var $responsiveMenu = $(currentContent).find(responsiveSelector).addBack(responsiveSelector);
+        var $responsiveMenu = $currentContent.find(responsiveSelector).addBack(responsiveSelector);
         if ($responsiveMenu.length !== 0) {
-            currentContent = $responsiveMenu.children('ul').html();
-            $menu.html(currentContent);
+            $currentContent = $responsiveMenu.children('ul').children().clone(true, true);
+            $menu.append($currentContent);
             $.fn.mnmenu.levelRecursion(settings, $menu, 0);
         } else {
-            $menu.html(currentContent);
+            $menu.append($currentContent);
         }
         var menuWidth = 0;
         $menu.find(['li.', settings.levelClassPrefix, '-0'].join('')).each(function() {
             menuWidth += $(this).outerWidth();
         });
         if ($(window).width() < (menuWidth + settings.responsiveMenuWindowWidthFudge)) {
-            var currentContent = $menu.html();
+            var $currentContent = $menu.children().clone(true);
             $menu.html('');
-            var responsiveMenu = $(["<li class='", settings.resposniveMenuButtonClass,
+            var $responsiveMenu = $(["<li class='", settings.resposniveMenuButtonClass,
                 " first'>", settings.resposniveMenuButtonLabel,
                 "<ul></ul></li>"].join(''));
-            $.fn.mnmenu.addEventListeners(responsiveMenu, settings);
-            responsiveMenu.children('ul').html(currentContent);
-            $menu.append(responsiveMenu);
+            $.fn.mnmenu.addEventListeners($responsiveMenu, settings);
+            $responsiveMenu.children('ul').append($currentContent);
+            $menu.append($responsiveMenu);
             $.fn.mnmenu.levelRecursion(settings, $menu, 0);
         }
-        //Add event listeners to every LI (When adding and removing html content, events are deleted
-        $menu.find("li").each(function() {
-            var $this = $(this);
-            $.fn.mnmenu.addEventListeners($this, settings);
-        });
     };
 
     /**
