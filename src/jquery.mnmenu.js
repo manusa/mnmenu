@@ -225,10 +225,14 @@
 
     /**
      * Function called when mouse clicks a menu entry (&lt;li&gt;)
+     * 
+     * This was a suggestion by akcoder, but this functionality should be aquired by css 
+     * I'm reverting
      * @param {jQuery} $menu
      * @param {type} settings
      * @returns {undefined}
      */
+    /*
     $.fn.mnmenu.mouseClick = function($menu, settings) {
         //Contribution by https://github.com/akcoder
         //TODO: Rethink function to add customization capabilities (Ajax links, support for href target...)
@@ -238,6 +242,7 @@
             window.location.href = $link.attr('href');
         }
     };
+    */
 
     $.fn.mnmenu.resetView = function($menu, settings) {
         // Reset current content and store it in a variable.
@@ -337,10 +342,13 @@
                     function() {
                         $.fn.mnmenu.mouseLeave($(this), settings);
                     });
+            // Revert contribution from ackoder.
+           /*
             $this.click(function(e) {
                 $.fn.mnmenu.mouseClick($(this), settings);
                 e.stopImmediatePropagation();
             });
+            */
         } else {
             var $this = $li;
             $this.mouseenter(function() {
@@ -349,10 +357,13 @@
             $this.mouseleave(function() {
                 $.fn.mnmenu.mouseLeave($(this), settings);
             });
+            // Revert contribution from ackoder.
+           /*
             $this.click(function(e) {
                 $.fn.mnmenu.mouseClick($(this), settings);
                 e.stopImmediatePropagation();
             });
+            */
         }
     };
 
