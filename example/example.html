@@ -8,7 +8,7 @@
         <script src="../lib/jquery.hoverintent.r7.js" type="text/javascript"></script>
         <script src="../src/jquery.mnmenu.js" type="text/javascript"></script>
         <script>$(document).ready(function() {
-                $('#idmenu').mnmenu();
+                $('#idmenu').mnmenu({responsiveMenuEnabled:false});
                 //Create and init additional menus
                 var $demoContainer = $('#demoContainer');
                 $demoContainer.append($("<h3>Regular menus</h3>"));
@@ -134,36 +134,11 @@
                 </ul>
             </li>
             <li>
-                <a href="#">Menu</a>
+                <a href="#" id="id47"><span>Responsive Menu Disabled</span></a>
                 <ul>
-                    <li><a href="#">Level M-1</a></li>
-                    <li><a href="#">Level M-2</a></li>
-                    <li><a href="#">Level M-3</a></li>
-                    <li><a href="#">Level M-4</a></li>
-                    <li><a href="#">Level M-5</a></li>
-                    <li>
-                        <a href="#">Level M-6</a>
-                        <ul>
-                            <li><a href="#">Level M-6-1</a></li>
-                            <li><a href="#">Level M-6-2</a></li>
-                            <li><a href="#">Level M-6-3</a></li>
-                            <li><a href="#">Level M-6-4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Level M-7</a></li>
-                    <li><a href="#">Level M-8</a></li>
-                    <li><a href="#">Level M-9</a></li>
-                    <li><a href="#">Level M-10</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" id="id47"><span>Web</span></a>
-                <ul>
-                    <li><a href="#" id="id48"><span>Log</span></a></li>
-                    <li><a href="#" id="id49"><span>Texts</span></a></li>
-                    <li><a href="#" id="id4a"><span>Categories</span></a></li>
-                    <li><a href="#" id="id4b"><span>Articles</span></a></li>
-                    <li><a href="#" id="id4c"><span>Files</span></a></li>
+                    <li><a href="#" id="id48"><span>Should</span></a></li>
+                    <li><a href="#" id="id49"><span>Not</span></a></li>
+                    <li><a href="#" id="id4a"><span>Collapse</span></a></li>
                 </ul>
             </li>
         </ul>

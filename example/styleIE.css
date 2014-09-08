@@ -178,3 +178,7 @@ div.content{
 div.copyright {
     margin:100px 0 0 0;
 }
+
+ul.mnmenu li.level-0 .fa{
+    line-height:25px;
+}

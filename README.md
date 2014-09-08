@@ -17,7 +17,10 @@ You can try a working demo of the project at:
 **[www.marcnuri.com](http://www.marcnuri.com/content/mnmenu-dropdown-jquery-menu)**
 
 Or browsing the example.html in the examples directory. Either by downloading the file or by visiting:
-[https://rawgithub.com/manusa/mnmenu/master/example/example.html](https://rawgithub.com/manusa/mnmenu/master/example/example.html)
+- [example.html](https://rawgithub.com/manusa/mnmenu/master/example/example.html) This example shows
+a couple of menus with different styles.
+- [exampleFontAwesome.html](https://rawgithub.com/manusa/mnmenu/master/example/example.html) This example
+shows a menu that when collapsed shows a [FontAwesome](http://fortawesome.github.io/Font-Awesome/) icon.
 
 ##Features
 
@@ -32,9 +35,9 @@ Or browsing the example.html in the examples directory. Either by downloading th
 ##Support
 
 You can ask for support or send your feedback messages to our mailing list hosted 
-in nabble (there's no need to register):
+in Google Groups (there's no need to register):
 
-http://mnmenu.54161.x6.nabble.com
+https://groups.google.com/forum/#!forum/mnmenu
 
 ##Requirements
 

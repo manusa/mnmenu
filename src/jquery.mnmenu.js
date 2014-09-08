@@ -3,8 +3,8 @@
  * Drop down menu
  *
  * Copyright (c) 2013 Marc Nuri
- * Version: 0.0.16
- * Modified: 2014-09-04
+ * Version: 0.0.17
+ * Modified: 2014-09-08
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
  *
@@ -252,7 +252,7 @@
 
     $.fn.mnmenu.resetView = function($menu, settings) {
         //Find the responsiveMenu button
-        var responsiveSelector = ['li.' + settings.resposniveMenuButtonClass].join('');
+        var responsiveSelector = ['li.' + settings.responsiveMenuButtonClass].join('');
         var $responsiveMenu = $menu.find(responsiveSelector).addBack(responsiveSelector);
         if ($responsiveMenu.length !== 0) {
             //Move children to top and remove button
@@ -266,11 +266,12 @@
         $menu.find(['li.', settings.levelClassPrefix, '-0'].join('')).each(function() {
             menuWidth += $(this).outerWidth();
         });
-        if ($(window).width() < (menuWidth + settings.responsiveMenuWindowWidthFudge)) {
+        if ($(window).width() < (menuWidth + settings.responsiveMenuWindowWidthFudge)
+                && settings.responsiveMenuEnabled === true) {
             //Add responsive button and move children
             var $children  = $menu.children();
-            var $responsiveMenu = $(["<li class='", settings.resposniveMenuButtonClass,
-                " first'>", settings.resposniveMenuButtonLabel,
+            var $responsiveMenu = $(["<li class='", settings.responsiveMenuButtonClass,
+                " first'>", settings.responsiveMenuButtonLabel,
                 "<ul></ul></li>"].join(''));
             $menu.append($responsiveMenu);
             $.fn.mnmenu.addEventListeners($responsiveMenu, settings);
@@ -403,8 +404,8 @@
         //Responsive
         responsiveMenuEnabled: true,
         responsiveMenuWindowWidthFudge: 10,
-        resposniveMenuButtonClass: "mnresponsive-button",
-        resposniveMenuButtonLabel: "Menu"
+        responsiveMenuButtonClass: "mnresponsive-button",
+        responsiveMenuButtonLabel: "Menu"
     };
     $.fn.mnmenu.defaults.levelSettings = {};
     //Define defaultTopLevelSettings

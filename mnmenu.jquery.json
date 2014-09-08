@@ -1,6 +1,6 @@
 {
     "name": "mnmenu",
-    "version": "0.0.16",
+    "version": "0.0.17",
     "title": "jQuery mnmenu, simple dropdown menu",
     "description": "jQuery plugin to create dropdown menus from ul lists.",
     "keywords": [
@@ -9,6 +9,7 @@
         "dropdown",
         "animated",
         "responsive",
+        "responsive-menu",
         "drop",
         "down",
         "menu",
