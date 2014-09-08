@@ -401,6 +401,7 @@
         defaultParentAttachmentPosition: "NE",
         defaultAttachmentPosition: "NW",
         //Responsive
+        responsiveMenuEnabled: true,
         responsiveMenuWindowWidthFudge: 10,
         resposniveMenuButtonClass: "mnresponsive-button",
         resposniveMenuButtonLabel: "Menu"

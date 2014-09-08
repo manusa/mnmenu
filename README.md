@@ -80,4 +80,7 @@ See the example styleIE.css for customization options.
 ###Options
 
 - Responsive options:
-  - resposniveMenuButtonLabel Text shown in the button showed when menu is collapsed ```resposniveMenuButtonLabel: "Menu"``` 
+  - **responsiveMenuEnabled** Enable/disable responsive feature. Enabled by default, set this option
+     to false to disable. ```responsiveMenuEnabled: true``` 
+  - **resposniveMenuButtonLabel** Text shown in the button showed when menu is collapsed 
+    ```resposniveMenuButtonLabel: "Menu"``` 
