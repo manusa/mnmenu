@@ -76,3 +76,8 @@ The structure of the ``<ul>`` element must be as follows:
 ###CSS
 
 See the example styleIE.css for customization options.
+
+###Options
+
+- Responsive options:
+  - resposniveMenuButtonLabel Text shown in the button showed when menu is collapsed ```resposniveMenuButtonLabel: "Menu"``` 
