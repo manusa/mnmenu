@@ -26,6 +26,8 @@ Or browsing the example.html in the examples directory. Either by downloading th
 - Menu can be oriented so that it displays left-to-right, right-to-left, bottom-to-top....
 - Animations for display transitions. Menu is shown and hidden with animations.
 - [HoverIntent](http://cherne.net/brian/resources/jquery.hoverIntent.html) compatible.
+- [Responsive](http://en.wikipedia.org/wiki/Responsive_web_design). Menu will collapse in devices
+  where the full first level is not visible.
 
 ##Support
 
