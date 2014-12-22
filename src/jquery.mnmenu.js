@@ -3,7 +3,7 @@
  * Drop down menu
  *
  * Copyright (c) 2013 Marc Nuri
- * Version: 0.0.18
+ * Version: 0.0.19
  * Modified: 2014-12-22
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
@@ -156,11 +156,19 @@
                 else if (customLevelSettings.parentAttachmentPosition.toUpperCase().indexOf("E") >= 0
                         && customLevelSettings.attachmentPosition.toUpperCase().indexOf("W") >= 0) {
                     left = $parent.outerWidth() + "px";
-                    //Always show on screen (Reversi)
+                    //Always show on screen 
+                    //Display Menu in visible area. (Several options)
                     if (($parentContainer.offset().left + $parentContainer.outerWidth() + $this.outerWidth())
                             > windowWidth) {
-                        left = "auto";
-                        right = $parent.outerWidth() + "px";
+                        // It doesn't fit to the left of the menu
+                        if (($parentContainer.outerWidth() + $this.outerWidth()) > windowWidth) {
+                            left = (windowWidth - $this.outerWidth())+"px";
+                        }
+                        // It all fits to the left of the menu (Reversi)
+                        else {
+                            left = "auto";
+                            right = $parent.outerWidth() + "px";
+                        }
                     }
                 } else if (customLevelSettings.parentAttachmentPosition.toUpperCase().indexOf("W") >= 0
                         && customLevelSettings.attachmentPosition.toUpperCase().indexOf("W") >= 0) {
