@@ -3,8 +3,8 @@
  * Drop down menu
  *
  * Copyright (c) 2013 Marc Nuri
- * Version: 0.0.17
- * Modified: 2014-09-08
+ * Version: 0.0.18
+ * Modified: 2014-12-22
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
  *
@@ -17,14 +17,15 @@
  * @param {jQuery} $
  * @returns {undefined}
  */
-(function($) {
+(function ($) {
     /**
      * Plugin initialization function
      * 
      * @param {object} op
      * @returns {unresolved}
      */
-    $.fn.mnmenu = function(op) {
+    $.fn.mnmenu = function (op) {
+        var $this = $(this);
         ////////////////////////////////////////////////////////////////////////
         //To specify custom level settings without affecting defaults
         var tempLevelSettings = {};
@@ -34,18 +35,19 @@
         }
         ////////////////////////////////////////////////////////////////////////
         var settings = $.extend({}, $.fn.mnmenu.defaults, op);
+        $this.data('windowHeight', null);
+        $this.data('windowWidth', null);
         ////////////////////////////////////////////////////////////////////////
         //Clone custom level settings so that defaults remain and apply custom;
         settings.levelSettings = $.extend({}, settings.levelSettings, tempLevelSettings);
         ////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////
         // Window resize event for responsive features
-        var $this = $(this);
-        $(window).resize(function() {
+        $(window).resize(function () {
             $.fn.mnmenu.windowResize($this, settings);
         });
         ////////////////////////////////////////////////////////////////////////
-        this.each(function() {
+        this.each(function () {
             var $parentMenu = $(this);
             if ($parentMenu.prop("tagName").toUpperCase() !== "UL") {
                 $.error("This function can only be called in <ul> elements.");
@@ -54,13 +56,13 @@
             //Recursion through elements to set default class names and parameters
             $.fn.mnmenu.levelRecursion(settings, $parentMenu, 0);
             //Hide every other submenu (It should be prehidden by css)
-            $parentMenu.find("ul").each(function() {
+            $parentMenu.find("ul").each(function () {
                 $(this).css("display", "none");
             });
         });
 
         //Add event listeners to every LI (When adding and removing html content, events are deleted
-        $this.find("li").each(function() {
+        $this.find("li").each(function () {
             var $this = $(this);
             $.fn.mnmenu.addEventListeners($this, settings);
         });
@@ -68,7 +70,22 @@
         return $this;
     };
 
-    $.fn.mnmenu.windowResize = function($menu, settings) {
+    /**
+     * 
+     * @param {type} $menu
+     * @param {type} settings
+     * @returns {undefined}
+     */
+    $.fn.mnmenu.windowResize = function ($menu, settings) {
+        //Mobile browser triggers window resize event when scrolling (This prevents it)
+        if (typeof $menu.data('windowHeight') !== 'undefined'
+                && typeof $menu.data('windowWidth') !== 'undefined'
+                && $menu.data('windowHeight') !== null
+                && $menu.data('windowWidth') !== null
+                && $menu.data('windowHeight') === $(window).height()
+                && $menu.data('windowWidth') === $(window).width()) {
+            return;
+        }
         $.fn.mnmenu.resetView($menu, settings);
     };
 
@@ -78,14 +95,14 @@
      * @param {type} settings
      * @returns {undefined}
      */
-    $.fn.mnmenu.mouseEnter = function($menu, settings) {
+    $.fn.mnmenu.mouseEnter = function ($menu, settings) {
         var windowWidth = $(window).width();
         clearTimeout($menu.data('timer'));
         //Add hover class
-        $.fn.mnmenu.elementsToHover($menu, settings).each(function() {
+        $.fn.mnmenu.elementsToHover($menu, settings).each(function () {
             $(this).addClass(settings.hoverClassName);
         });
-        $menu.children("ul").each(function() {
+        $menu.children("ul").each(function () {
             var $this = $(this);
             var $parent = $this.parent("li");
             var $parentContainer = $parent.closest("ul");
@@ -213,16 +230,16 @@
      * @param {type} settings
      * @returns {undefined}
      */
-    $.fn.mnmenu.mouseLeave = function($menu, settings) {
+    $.fn.mnmenu.mouseLeave = function ($menu, settings) {
         clearTimeout($menu.data('timer'));
         //Remove hover class
-        $.fn.mnmenu.elementsToHover($menu, settings).each(function() {
+        $.fn.mnmenu.elementsToHover($menu, settings).each(function () {
             $(this).removeClass(settings.hoverClassName);
         });
-        $menu.children("ul").each(function() {
+        $menu.children("ul").each(function () {
             var $toHide = $(this);
             $menu.data('timer', setTimeout(
-                    function() {
+                    function () {
                         $toHide.hide(settings.duration);
                     }, settings.delay));
         });
@@ -239,37 +256,40 @@
      * @returns {undefined}
      */
     /*
-    $.fn.mnmenu.mouseClick = function($menu, settings) {
-        //Contribution by https://github.com/akcoder
-        //TODO: Rethink function to add customization capabilities (Ajax links, support for href target...)
-        clearTimeout($menu.data('timer'));
-        var $link = $menu.children('a');
-        if ($link.attr('href')) {
-            window.location.href = $link.attr('href');
-        }
-    };
-    */
+     $.fn.mnmenu.mouseClick = function($menu, settings) {
+     //Contribution by https://github.com/akcoder
+     //TODO: Rethink function to add customization capabilities (Ajax links, support for href target...)
+     clearTimeout($menu.data('timer'));
+     var $link = $menu.children('a');
+     if ($link.attr('href')) {
+     window.location.href = $link.attr('href');
+     }
+     };
+     */
 
-    $.fn.mnmenu.resetView = function($menu, settings) {
+    $.fn.mnmenu.resetView = function ($menu, settings) {
+        //Set variables for future checks
+        $menu.data('windowHeight', $(window).height());
+        $menu.data('windowWidth', $(window).width());
         //Find the responsiveMenu button
         var responsiveSelector = ['li.' + settings.responsiveMenuButtonClass].join('');
         var $responsiveMenu = $menu.find(responsiveSelector).addBack(responsiveSelector);
         if ($responsiveMenu.length !== 0) {
             //Move children to top and remove button
-            var $children  = $responsiveMenu.children('ul').children();
+            var $children = $responsiveMenu.children('ul').children();
             $menu.append($children);
             $responsiveMenu.remove();
             $.fn.mnmenu.levelRecursion(settings, $menu, 0);
-        } 
+        }
         //Calculate expanded width
         var menuWidth = 0;
-        $menu.find(['li.', settings.levelClassPrefix, '-0'].join('')).each(function() {
+        $menu.find(['li.', settings.levelClassPrefix, '-0'].join('')).each(function () {
             menuWidth += $(this).outerWidth();
         });
         if ($(window).width() < (menuWidth + settings.responsiveMenuWindowWidthFudge)
                 && settings.responsiveMenuEnabled === true) {
             //Add responsive button and move children
-            var $children  = $menu.children();
+            var $children = $menu.children();
             var $responsiveMenu = $(["<li class='", settings.responsiveMenuButtonClass,
                 " first'>", settings.responsiveMenuButtonLabel,
                 "<ul></ul></li>"].join(''));
@@ -289,7 +309,7 @@
      * @param {int} level
      * @returns {undefined}
      */
-    $.fn.mnmenu.levelRecursion = function(settings, $component, level) {
+    $.fn.mnmenu.levelRecursion = function (settings, $component, level) {
         if ($component.prop("tagName").toUpperCase() === "LI") {
             var middle = true;
             //Add arrows to parent <li>. This can only happen from level 1
@@ -314,7 +334,7 @@
             level++;
         }
         //The component may not have 'li' direct descendants a span or something else may be in the way
-        $component.children().each(function() {
+        $component.children().each(function () {
             var $currentLevel = $(this);
             //Remove old Level class attribute
             $currentLevel.removeClass([settings.levelClassPrefix, "-", level].join(''));
@@ -332,38 +352,38 @@
      * @param {type} settings
      * @returns {undefined}
      */
-    $.fn.mnmenu.addEventListeners = function($li, settings) {
+    $.fn.mnmenu.addEventListeners = function ($li, settings) {
         if ($.fn.hoverIntent) {
             var $this = $li;
             $this.hoverIntent(
-                    function() {
+                    function () {
                         $.fn.mnmenu.mouseEnter($(this), settings);
                     },
-                    function() {
+                    function () {
                         $.fn.mnmenu.mouseLeave($(this), settings);
                     });
             // Revert contribution from ackoder.
-           /*
-            $this.click(function(e) {
-                $.fn.mnmenu.mouseClick($(this), settings);
-                e.stopImmediatePropagation();
-            });
-            */
+            /*
+             $this.click(function(e) {
+             $.fn.mnmenu.mouseClick($(this), settings);
+             e.stopImmediatePropagation();
+             });
+             */
         } else {
             var $this = $li;
-            $this.mouseenter(function() {
+            $this.mouseenter(function () {
                 $.fn.mnmenu.mouseEnter($(this), settings);
             });
-            $this.mouseleave(function() {
+            $this.mouseleave(function () {
                 $.fn.mnmenu.mouseLeave($(this), settings);
             });
             // Revert contribution from ackoder.
-           /*
-            $this.click(function(e) {
-                $.fn.mnmenu.mouseClick($(this), settings);
-                e.stopImmediatePropagation();
-            });
-            */
+            /*
+             $this.click(function(e) {
+             $.fn.mnmenu.mouseClick($(this), settings);
+             e.stopImmediatePropagation();
+             });
+             */
         }
     };
 
@@ -374,7 +394,7 @@
      * @param {type} settings
      * @returns {jQuery}
      */
-    $.fn.mnmenu.elementsToHover = function($menu, settings) {
+    $.fn.mnmenu.elementsToHover = function ($menu, settings) {
         //All children which aren't containers (li, span, links...)
         //This makes it easier for styling.
         return $([$menu, $menu.children(":not(ul)")]);
