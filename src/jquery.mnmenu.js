@@ -268,9 +268,6 @@
      */
 
     $.fn.mnmenu.resetView = function ($menu, settings) {
-        //Set variables for future checks
-        $menu.data('windowHeight', $(window).height());
-        $menu.data('windowWidth', $(window).width());
         //Find the responsiveMenu button
         var responsiveSelector = ['li.' + settings.responsiveMenuButtonClass].join('');
         var $responsiveMenu = $menu.find(responsiveSelector).addBack(responsiveSelector);
@@ -298,6 +295,9 @@
             $responsiveMenu.children('ul').append($children);
             $.fn.mnmenu.levelRecursion(settings, $menu, 0);
         }
+        //Set variables for future checks
+        $menu.data('windowHeight', $(window).height());
+        $menu.data('windowWidth', $(window).width());
     };
 
     /**
