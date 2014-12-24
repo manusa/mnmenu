@@ -78,11 +78,9 @@
      */
     $.fn.mnmenu.windowResize = function ($menu, settings) {
         //Mobile browser triggers window resize event when scrolling (This prevents it)
-        if (typeof $menu.data('windowHeight') !== 'undefined'
-                && typeof $menu.data('windowWidth') !== 'undefined'
-                && $menu.data('windowHeight') !== null
+        //Reset view if Horizontal size changes (Responsive button)
+        if (typeof $menu.data('windowWidth') !== 'undefined'
                 && $menu.data('windowWidth') !== null
-                && $menu.data('windowHeight') === $(window).height()
                 && $menu.data('windowWidth') === $(window).width()) {
             return;
         }
