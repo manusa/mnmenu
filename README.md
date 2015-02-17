@@ -22,6 +22,14 @@ a couple of menus with different styles.
 - [exampleFontAwesome.html](https://rawgithub.com/manusa/mnmenu/master/example/exampleFontAwesome.html) This example
 shows a menu that when collapsed shows a [FontAwesome](http://fortawesome.github.io/Font-Awesome/) icon.
 
+###Sites using mnMenu
+
+If your site is using this plugin you can contact me to include it in the list.
+
+- [marcnuri.com](http://www.marcnuri.com) Author's site, uses the menu in several parts of the site.
+- [Tradival](http://www.tradival.com) Spanish transportation agency in Spain. Uses responsive menu with fontawesome.
+
+
 ##Features
 
 - Nested list menu. The menu can have several nested hierarchy levels.
