@@ -27,7 +27,7 @@ shows a menu that when collapsed shows a [FontAwesome](http://fortawesome.github
 If your site is using this plugin you can contact me to include it in the list.
 
 - [marcnuri.com](http://www.marcnuri.com) Author's site, uses the menu in several parts of the site.
-- [Tradival](http://www.tradival.com) Spanish transportation agency in Spain. Uses responsive menu with fontawesome.
+- [Tradival](http://www.tradival.com) Spanish transportation agency. Uses responsive menu with fontawesome.
 
 
 ##Features
