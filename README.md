@@ -1,7 +1,7 @@
-#[mnmenu](http://www.marcnuri.com/)
+# [mnmenu](http://www.marcnuri.com/)
 
 
-##Description
+## Description
 
 [JQuery](http://jquery.com/) plugin to create dropdown menus from ``<ul>`` lists.
 
@@ -11,7 +11,7 @@ with more features to come, so check for updates to see what's new in upcoming v
 The aim of the project is to create a very simple to style dropdown menu. You can create
 a totally styled menu in less than 100 line stylesheet.
 
-##Demo
+## Demo
 
 You can try a working demo of the project at:
 **[www.marcnuri.com](http://www.marcnuri.com/content/mnmenu-dropdown-jquery-menu)**
@@ -22,7 +22,7 @@ a couple of menus with different styles.
 - [exampleFontAwesome.html](https://rawgithub.com/manusa/mnmenu/master/example/exampleFontAwesome.html) This example
 shows a menu that when collapsed shows a [FontAwesome](http://fortawesome.github.io/Font-Awesome/) icon.
 
-###Sites using mnMenu
+### Sites using mnMenu
 
 If your site is using this plugin you can contact me to include it in the list.
 
@@ -30,7 +30,7 @@ If your site is using this plugin you can contact me to include it in the list.
 - [Tradival](http://www.tradival.com) Spanish transportation agency. Uses responsive menu with fontawesome.
 
 
-##Features
+## Features
 
 - Nested list menu. The menu can have several nested hierarchy levels.
 - Menu calculates window bounds so that it's always in the client view area.
@@ -40,21 +40,21 @@ If your site is using this plugin you can contact me to include it in the list.
 - [Responsive](http://en.wikipedia.org/wiki/Responsive_web_design). Menu will collapse in devices
   where the full first level is not visible.
 
-##Support
+## Support
 
 You can ask for support or send your feedback messages to our mailing list hosted 
 in Google Groups (there's no need to register):
 
 https://groups.google.com/forum/#!forum/mnmenu
 
-##Requirements
+## Requirements
 
 - This is a [JQuery](http://jquery.com/) plugin, so obviously it requires the jquery library.
 - That's it.
 
-##Usage
+## Usage
 
-###Html
+### Html
 
 Add JQuery and mnmenu scripts to the `<head>` section.
  ```html
@@ -84,11 +84,11 @@ The structure of the ``<ul>`` element must be as follows:
 </ul>
 ```
 
-###CSS
+### CSS
 
 See the example styleIE.css for customization options.
 
-###Options
+### Options
 
 - Responsive options:
   - **responsiveMenuEnabled** Enable/disable responsive feature. Enabled by default, set this option
